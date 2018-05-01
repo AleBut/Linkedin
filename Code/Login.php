@@ -1,4 +1,7 @@
 <?php
+	// Sauvegarder l'ID
+	session_start();
+
 	// isset: vérifie que la donnée existe, équivalente à !empty()
 	$email 		= isset($_POST["email"])? $_POST["email"]: "";  // If then else
 	$password 	= isset($_POST["MDP"])? $_POST["MDP"]: "";
@@ -26,11 +29,12 @@
 		// Si le tableau de resultat est vide
 		if(empty($data))
 		{
-			header('Refresh: 0; url=LoginErrone.html');
+			header("Refresh: 0; url=Login.html");
 		}
 		else
 		{
-			header('Refresh: 0; url=Login.html');
+			$_SESSION['ID_user'] = $data['ID_user'];
+			header("Refresh: 0; url=Accueil.php");
 			$connexion = true;
 		}
 	}
