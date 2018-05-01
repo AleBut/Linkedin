@@ -2,9 +2,6 @@
 	// Démarre la session
 	session_start();
 	$ID_user = $_SESSION['ID_user'];
-
-	echo "Bienvenue dans votre accueil ! <br>";
-	echo "Votre ID est " . $ID_user;
 ?>
 
 <!doctype html>
@@ -17,7 +14,7 @@
     <link rel="icon" href="../../../../favicon.ico">
 
     <!-- >WHAT MATE???? -->
-    <title>Starter Template for Bootstrap</title>
+    <title>ECE'IN</title>
 
     <!-- Bootstrap core CSS -->
       <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" rel="stylesheet">
@@ -80,7 +77,10 @@
 
       <div class="starter-template">
         <h1>Publiez un post </h1>
-          <form action="Accueil.php" method="post" enctype="multipart/form-data">
+          <form action="TraitementPost.php" method="post" enctype="multipart/form-data">
+                  <textarea name="ameliorer" id="ameliorer" rows="3" cols="35">
+       Publiez ce que vous voulez
+       </textarea>     <br><br>
         <input type="file" name="fichier" />
               <br><br>
               <button type="submit">Connexion</button>
