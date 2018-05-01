@@ -18,7 +18,7 @@
   </head>
 
   <body class="text-center" id="bckg">
-    <form class="form-signin" action="Accueil.php" method="post">
+    <form class="form-signin" action="Inscription.php" method="post">
       <img class="mb-4" src="https://getbootstrap.com/assets/brand/bootstrap-solid.svg" alt="" width="72" height="72">
       <h1 class="h3 mb-3 font-weight-normal">Inscrivez vous</h1>
       <label for="inputEmail" class="sr-only">Votre Adresse mail</label>
@@ -30,7 +30,7 @@
         <label for="inputText" class="sr-only">Votre Prénom </label>
       <input type="text" class="form-control" placeholder="Votre Prénom" required autofocus name="prenom">
         <br>
-      <label for="inputPassword" class="sr-only">Pseudo</label>
+      <label for="inputPassword" class="sr-only">Mot de Passe</label>
       <input type="password" id="inputPassword" class="form-control" placeholder="Mot de Passe" required name="MDP">
         <br>
         <input type="date" name="date" placeholder="jj/mm/aaaa" style="text-align : right;">
