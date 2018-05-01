@@ -1,40 +1,37 @@
-<!--Source GetBootstrap-->
-<!doctype html>
-<html lang="en">
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="description" content="">
-    <meta name="author" content="">
-    <link rel="icon" href="../../../../favicon.ico">
+<?php
+	// isset: vérifie que la donnée existe, équivalente à !empty()
+	$email 		= isset($_POST["email"])? $_POST["email"]: "";  // If then else
+	$password 	= isset($_POST["MDP"])? $_POST["MDP"]: "";
 
-    <title>LinkedInECE</title>
+	$connexion = false;
 
-    <!-- Bootstrap core CSS -->
-    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" rel="stylesheet">
+	// Identifier BDD
+	$database = "linkedin";
 
-    <!-- Custom styles for this template -->
-    <link href="signin.css" rel="stylesheet">
-  </head>
+	// Connecter utilisateur à MYSQL
+	$db_handle = mysqli_connect('localhost', 'root', '');
+	// Connecter l'utilisateur à la BDD
+	$db_found = mysqli_select_db($db_handle, $database);
 
-  <body class="text-center" id="bckg">
-    <form class="form-signin" action="Accueil.php" method="post">
-      <img class="mb-4" src="https://getbootstrap.com/assets/brand/bootstrap-solid.svg" alt="" width="72" height="72">
-      <h1 class="h3 mb-3 font-weight-normal">Connectez vous</h1>
-      <label for="inputEmail" class="sr-only">Votre Adresse mail</label>
-      <input type="email" class="form-control" placeholder="Adresse Email" required autofocus name="email">
-      <label for="inputPassword" class="sr-only">Pseudo</label>
-      <input type="password" id="inputPassword" class="form-control" placeholder="Mot de Passe" required name="MDP">
-      <div class="checkbox mb-3">
-        <label>
-          <input type="checkbox" value="remember-me"> Se souvenir de moi
-        </label>
-      </div>
-      <button class="btn btn-lg btn-primary btn-block btngr egn " type="submit">Connexion</button>
-        <div class="alternative">
-      <a href="Creercompte" style="text-decoration : none; color : darkgrey;"> Créer un compte </a>
-      </div>
-      <p class="mt-5 mb-3 text-muted">&copy; 2017-2018</p>
-    </form>
-  </body>
-</html>
+	// Si BDD existe
+	if($db_found)
+	{
+		// On écrit la requête SQL
+		$sql = "SELECT ID_user FROM utilisateur WHERE Mail = '" .  $email . "' AND MotDePasse = '" . $password . "'";
+
+		// On envoit la requête
+		$result = mysqli_query($db_handle, $sql);
+		$data = mysqli_fetch_assoc($result);
+
+		// Si le tableau de resultat est vide
+		if(empty($data))
+		{
+			header('Refresh: 0; url=LoginErrone.html');
+		}
+		else
+		{
+			header('Refresh: 0; url=Login.html');
+			$connexion = true;
+		}
+	}
+?>
