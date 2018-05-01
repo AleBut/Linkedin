@@ -78,14 +78,7 @@
 
     <main role="main" class="container">
 
-      <div class="starter-template">
-        <h1>Publiez un post </h1>
-          <form action="Accueil.php" method="post" enctype="multipart/form-data">
-        <input type="file" name="fichier" />
-              <br><br>
-              <button type="submit">Connexion</button>
-          </form>
-      </div>
+      <img src="ProfilBackG.jpg" alt="Fond d'écran">
 
     </main><!-- /.container -->
 
