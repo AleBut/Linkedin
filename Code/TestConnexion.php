@@ -26,11 +26,12 @@
 		// Si le tableau de resultat est vide
 		if(empty($data))
 		{
-			header('Refresh: 0; url=LoginErrone.html');
+
+			header('Refresh: 0; url=LoginErrone.php');
 		}
 		else
 		{
-			header('Refresh: 0; url=Login.html');
+			//header("location:login.php");
 			$connexion = true;
 		}
 	}
