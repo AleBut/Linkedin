@@ -50,7 +50,7 @@
           </li>
             <!-- Bouton réseau -->
           <li class="nav-item -brand bouton">
-            <a class="nav-link" href="#">Réseau</a>
+            <a class="nav-link" href="AfficherAmis.php">Réseau</a>
           </li>
           <!-- Bouton emplois -->
           <li class="nav-item -brand bouton">
