@@ -3,6 +3,17 @@
   session_start();
   $ID_user = $_SESSION['ID_user'];
 
+  // Variables utilisées
+    // Table utilisateur
+  $PrenomNom = "";
+  $Mail = "";
+
+    // Table description
+  $Description = "";
+
+    // Table experience
+  $Emploi = "";
+
   // Identifier BDD
   $database = "linkedin";
   // Connecter utilisateur à MYSQL
@@ -14,11 +25,35 @@
   // Si BDD existe
   if($db_found)
   {
-    // On récupère Prenom et Nom pour le profil
-    $sql = "SELECT Prenom, Nom FROM utilisateur WHERE ID_user = " . $ID_user;
+    // Requete table utilisateur
+    $sql = "SELECT * FROM utilisateur WHERE ID_user = " . $ID_user;
     $result = mysqli_query($db_handle, $sql);
     $data = mysqli_fetch_assoc($result);
+
+    // On récupère Prenom et Nom pour le profil
     $PrenomNom = $data['Prenom'] . " " . $data['Nom'];
+
+    // On récupère le mail
+    $Mail = $data['Mail'];
+
+
+    // Requete table Description
+    $sql = "SELECT * FROM description WHERE ID_user = " . $ID_user;
+    $result = mysqli_query($db_handle, $sql);
+    $data = mysqli_fetch_assoc($result);
+
+    $Description = $data['Description'];
+
+
+    // Requete table experience
+    $sql = "SELECT * FROM experience WHERE ID_user = " . $ID_user . " ORDER BY DateFin DESC";
+    $result = mysqli_query($db_handle, $sql);
+    $data = mysqli_fetch_assoc($result);
+
+    if(!empty($data))
+      $Emploi = $data['Entreprise'];
+    else
+      $Emploi = "Sans emploi";
   }
   mysqli_close($db_handle);
 
@@ -103,31 +138,31 @@
       <section class = "background">
            <div >
           <img src="ProfilImage.jpg"  class = "arrondi pp" height="">
-               <h2 class="nom"><?php echo $PrenomNom?></h2>
+          <h2 class="nom"><?php echo $PrenomNom?></h2>
         </div>
       </section>
 
       <section style="margin-top:25px;">
-         
-
         <div class = "statut">
           <h3>À propos de moi</h3>
-          <p>Emploi en cours:</p>
+          <p>Emploi en cours: <?php echo $Emploi?></p>
         </div>
-          <div class = "boutonsp">
-               <button class="btn btn-lg  btn-block btngr egn " type="submit">Modifier Profil</button>
-          <button class="btn btn-lg  btn-block btngr  " type="submit">Photos</button>
-             
-          </div>
-        
 
+        <div class = "boutonsp">
+          <button class="btn btn-lg  btn-block btngr egn " type="submit">Modifier Profil</button>
+        <button class="btn btn-lg  btn-block btngr  " type="submit">Photos</button>
+        </div>
+        
         <div class = "informations">
           <h3>Informations:</h3>
-          <p>Email:</p>
-          <p>Téléphone:</p>
+          <p>Email: <?php echo $Mail?></p>
+          <p>CV:</p>
         </div>
-
       </section>
+
+      <section>
+         <p>Description: <?php echo $Description?></p>
+       </section>
 
     </main><!-- /.container -->
 
