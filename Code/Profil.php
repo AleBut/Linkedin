@@ -3,8 +3,6 @@
   session_start();
   $ID_user = $_SESSION['ID_user'];
 
-  echo "Bienvenue dans votre accueil ! <br>";
-  echo "Votre ID est " . $ID_user;
 ?>
 
 <!doctype html>
@@ -17,13 +15,13 @@
     <link rel="icon" href="../../../../favicon.ico">
 
     <!-- >WHAT MATE???? -->
-    <title>Starter Template for Bootstrap</title>
+    <title>Profil</title>
 
     <!-- Bootstrap core CSS -->
       <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" rel="stylesheet">
 
     <!-- Custom styles for this template -->
-    <link href="Accueil.css" rel="stylesheet">
+    <link href="Profil.css" rel="stylesheet">
   </head>
 
   <body>
@@ -78,7 +76,30 @@
 
     <main role="main" class="container">
 
-      <img src="ProfilBackG.jpg" alt="Fond d'écran">
+      <section>
+        <div class="background">
+          <img src="ProfilBackG.jpg" alt="Fond d'écran" style='height: 100%; width: 100%; object-fit: contain'>
+        </div>
+      </section>
+
+      <section>
+
+        <div class = "statut">
+          <h3>À propos de moi</h3>
+          <p>Emploi en cours:</p>
+        </div>
+
+        <div class = "profil">
+          <img src="ProfilImage.jpg"  class = "arrondi">
+        </div>
+
+        <div class = "informations">
+          <h3>Informations:</h3>
+          <p>Email:</p>
+          <p>Téléphone:</p>
+        </div>
+
+      </section>
 
     </main><!-- /.container -->
 

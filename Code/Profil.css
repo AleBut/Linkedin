@@ -1,0 +1,24 @@
+body {
+  background-color: #F5F5F5;
+}
+
+.background {
+}
+
+.statut {
+	text-align : left;
+}
+
+.profil {
+	text-align : center;
+}
+
+.informations {
+	text-align : right;
+}
+
+.arrondi {
+	border-radius: 30%;
+	height: 200px;
+	width: 200px;
+}
