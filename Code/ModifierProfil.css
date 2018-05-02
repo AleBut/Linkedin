@@ -1,0 +1,11 @@
+.centertop{
+    margin-top: 50px;
+    margin-bottom: 50px;
+}
+.left{
+    margin-top: 50px;
+    width: 50%
+}
+.right{
+    width: 50%
+}

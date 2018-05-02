@@ -1,0 +1,65 @@
+.body {
+  background-color: #F5F5F5;
+}
+.pp {
+   margin-left: 40%;
+
+}
+
+.logo {
+    margin-left: 50px;
+    color:#2CA94E;
+}
+.barBoutons {
+    margin-left: 100px;
+}
+.bouton {
+    margin-right: 10px;
+}
+
+
+.nom{
+    padding-top: -10px;
+    color: white;
+    text-align: center;
+    margin-bottom: 4%;
+}
+.background {
+    padding-top: 100px;
+    background-repeat: repeat-x;
+    height: 30%;
+    width: 100%;
+}
+.btngr {
+    background-color :cornflowerblue;
+    color : white;
+    border-color: cornflowerblue;    
+}
+.btngr:hover {
+    cursor:auto;
+    background-color:cadetblue;
+}
+.statut {
+	float: left;
+    display: inline;
+   width: 33%;
+}
+
+.boutonsp {
+	float: left;
+    display: inline;
+    width: 30%;
+}
+
+.informations {
+    margin-left: 25px;
+	float: left;
+    display: inline;
+    width: 33%;
+}
+
+.arrondi {
+	border-radius: 30%;
+	height: 200px;
+	width: 200px;
+}

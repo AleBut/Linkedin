@@ -3,8 +3,67 @@
   session_start();
   $ID_user = $_SESSION['ID_user'];
 
-  echo "Bienvenue dans votre accueil ! <br>";
-  echo "Votre ID est " . $ID_user;
+  // Variables utilisées
+    // Table utilisateur
+  $PrenomNom = "";
+  $Mail = "";
+
+    // Table description
+  $Description = "Pas encore de description!";
+  $PhotoProfil = "imageProfilDefault.jpg";
+  $PhotoArrierePlan = "imageBackgroundDefault.jpg";
+
+    // Table experience
+  $Emploi = "";
+
+  // Identifier BDD
+  $database = "linkedin";
+  // Connecter utilisateur à MYSQL
+  $db_handle = mysqli_connect('localhost', 'root', '');
+  // Connecter l'utilisateur à la BDD
+  $db_found = mysqli_select_db($db_handle, $database);
+
+
+  // Si BDD existe
+  if($db_found)
+  {
+    // Requete table utilisateur
+    $sql = "SELECT * FROM utilisateur WHERE ID_user = " . $ID_user;
+    $result = mysqli_query($db_handle, $sql);
+    $data = mysqli_fetch_assoc($result);
+
+    // On récupère Prenom et Nom pour le profil
+    $PrenomNom = $data['Prenom'] . " " . $data['Nom'];
+
+    // On récupère le mail
+    $Mail = $data['Mail'];
+
+
+    // Requete table Description
+    $sql = "SELECT * FROM description WHERE ID_user = " . $ID_user;
+    $result = mysqli_query($db_handle, $sql);
+    $data = mysqli_fetch_assoc($result);
+
+    if(!empty($data))
+    {
+      $Description = $data['Description'];
+      $PhotoProfil = $data['PhotoProfil'];
+      $PhotoArrierePlan = $data['ImageFond'];
+    }
+
+
+    // Requete table experience
+    $sql = "SELECT * FROM experience WHERE ID_user = " . $ID_user . " ORDER BY DateFin DESC";
+    $result = mysqli_query($db_handle, $sql);
+    $data = mysqli_fetch_assoc($result);
+
+    if(!empty($data))
+      $Emploi = $data['Entreprise'];
+    else
+      $Emploi = "Sans emploi";
+  }
+  mysqli_close($db_handle);
+
 ?>
 
 <!doctype html>
@@ -17,13 +76,18 @@
     <link rel="icon" href="../../../../favicon.ico">
 
     <!-- >WHAT MATE???? -->
-    <title>Starter Template for Bootstrap</title>
+      
+    <title>Profil</title>
+      
+ <!-- Bootstrap core CSS -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" rel="stylesheet">
+
 
     <!-- Bootstrap core CSS -->
       <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" rel="stylesheet">
 
     <!-- Custom styles for this template -->
-    <link href="Accueil.css" rel="stylesheet">
+    <link href="Profil.css" rel="stylesheet">
   </head>
 
   <body>
@@ -70,7 +134,7 @@
           </li>
           <!-- Bouton Deconnexion -->
           <li class="nav-item -brand bouton">
-            <a class="nav-link" href="#">Deconnexion</a>
+            <a class="nav-link" href="Deconnexion.php">Deconnexion</a>
           </li>
         </ul>
       </div>
@@ -78,14 +142,37 @@
 
     <main role="main" class="container">
 
-      <div class="starter-template">
-        <h1>Publiez un post </h1>
-          <form action="Accueil.php" method="post" enctype="multipart/form-data">
-        <input type="file" name="fichier" />
-              <br><br>
-              <button type="submit">Connexion</button>
-          </form>
-      </div>
+      <!-- Photo background + photo profil + prenom/nom -->
+      <section class = "background"  style = "background-image: url(<?php echo $PhotoArrierePlan?>);">
+        <div >
+          <img src= <?php echo $PhotoProfil?>  class = "arrondi pp" height="">
+          <h2 class="nom"><?php echo $PrenomNom?></h2>
+        </div>
+      </section>
+
+      <!-- Statut de la personne + boutons de modification + informations -->
+      <section style="margin-top:25px;">
+        <div class = "statut">
+          <h3>À propos de moi</h3>
+          <p>Emploi en cours: <?php echo $Emploi?></p>
+        </div>
+
+        <div class = "boutonsp">
+          <button class="btn btn-lg  btn-block btngr egn " type="submit">Modifier Profil</button>
+        <button class="btn btn-lg  btn-block btngr  " type="submit">Photos</button>
+        </div>
+        
+        <div class = "informations">
+          <h3>Informations:</h3>
+          <p>Email: <?php echo $Mail?></p>
+          <p>CV:</p>
+        </div>
+      </section>
+
+      <!-- Description de la personne -->
+      <section>
+         <p>Description: <?php echo $Description?></p>
+       </section>
 
     </main><!-- /.container -->
 
