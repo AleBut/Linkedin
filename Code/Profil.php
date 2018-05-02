@@ -3,6 +3,25 @@
   session_start();
   $ID_user = $_SESSION['ID_user'];
 
+  // Identifier BDD
+  $database = "linkedin";
+  // Connecter utilisateur à MYSQL
+  $db_handle = mysqli_connect('localhost', 'root', '');
+  // Connecter l'utilisateur à la BDD
+  $db_found = mysqli_select_db($db_handle, $database);
+
+
+  // Si BDD existe
+  if($db_found)
+  {
+    // On récupère Prenom et Nom pour le profil
+    $sql = "SELECT Prenom, Nom FROM utilisateur WHERE ID_user = " . $ID_user;
+    $result = mysqli_query($db_handle, $sql);
+    $data = mysqli_fetch_assoc($result);
+    $PrenomNom = $data['Prenom'] . " " . $data['Nom'];
+  }
+  mysqli_close($db_handle);
+
 ?>
 
 <!doctype html>
@@ -84,7 +103,7 @@
       <section class = "background">
            <div >
           <img src="ProfilImage.jpg"  class = "arrondi pp" height="">
-               <h2 class="nom">Benjamin Chardin</h2>
+               <h2 class="nom"><?php echo $PrenomNom?></h2>
         </div>
       </section>
 
