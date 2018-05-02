@@ -9,7 +9,9 @@
   $Mail = "";
 
     // Table description
-  $Description = "";
+  $Description = "Pas encore de description!";
+  $PhotoProfil = "imageProfilDefault.jpg";
+  $PhotoArrierePlan = "imageBackgroundDefault.jpg";
 
     // Table experience
   $Emploi = "";
@@ -42,7 +44,12 @@
     $result = mysqli_query($db_handle, $sql);
     $data = mysqli_fetch_assoc($result);
 
-    $Description = $data['Description'];
+    if(!empty($data))
+    {
+      $Description = $data['Description'];
+      $PhotoProfil = $data['PhotoProfil'];
+      $PhotoArrierePlan = $data['ImageFond'];
+    }
 
 
     // Requete table experience
@@ -127,7 +134,7 @@
           </li>
           <!-- Bouton Deconnexion -->
           <li class="nav-item -brand bouton">
-            <a class="nav-link" href="#">Deconnexion</a>
+            <a class="nav-link" href="Deconnexion.php">Deconnexion</a>
           </li>
         </ul>
       </div>
@@ -135,13 +142,15 @@
 
     <main role="main" class="container">
 
-      <section class = "background">
-           <div >
-          <img src="ProfilImage.jpg"  class = "arrondi pp" height="">
+      <!-- Photo background + photo profil + prenom/nom -->
+      <section class = "background"  style = "background-image: url(<?php echo $PhotoArrierePlan?>);">
+        <div >
+          <img src= <?php echo $PhotoProfil?>  class = "arrondi pp" height="">
           <h2 class="nom"><?php echo $PrenomNom?></h2>
         </div>
       </section>
 
+      <!-- Statut de la personne + boutons de modification + informations -->
       <section style="margin-top:25px;">
         <div class = "statut">
           <h3>À propos de moi</h3>
@@ -160,6 +169,7 @@
         </div>
       </section>
 
+      <!-- Description de la personne -->
       <section>
          <p>Description: <?php echo $Description?></p>
        </section>
