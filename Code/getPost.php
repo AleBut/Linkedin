@@ -4,7 +4,63 @@
 	$ID_user = $_SESSION['ID_user'];
 
 	echo "Bienvenue dans votre accueil ! <br>";
-	echo "Votre ID est " . $ID_user;
+	echo "Votre ID est " . $ID_user . "<br><br>";
+
+  // Variables 
+  $arrayID_user = array();
+  $arrayPrenomNom = array();
+  $arrayContenu = array();
+  $arrayDatePublication = array();
+  $arrayLieu = array();
+  $arrayModeVisiblite = array();
+
+  // Identifier BDD
+  $database = "linkedin";
+
+  // Connecter utilisateur à MYSQL
+  $db_handle = mysqli_connect('localhost', 'root', '');
+  // Connecter l'utilisateur à la BDD
+  $db_found = mysqli_select_db($db_handle, $database);
+
+  // Si BDD existe
+  if($db_found)
+  {
+    // On stocke les résultats de la requête
+    $sql = "SELECT * FROM post";
+    $result = mysqli_query($db_handle, $sql);
+    while($data = mysqli_fetch_assoc($result))    
+    {
+      array_push($arrayID_user, $data['ID_user']);
+      array_push( $arrayContenu, $data['Contenu']);
+      array_push($arrayDatePublication, $data['DatePublication']);
+      array_push( $arrayLieu, $data['Lieu']);
+      array_push($arrayModeVisiblite, $data['ModeVisibilite']);
+    }
+
+    // On récupère le prénom et nom de l'auteur
+    $size = count($arrayID_user);
+    for($i=0; $i<$size; $i++)
+    {
+      $sql = "SELECT Prenom, Nom FROM utilisateur WHERE ID_user = " . $arrayID_user[$i];
+      $result = mysqli_query($db_handle, $sql);
+      $data = mysqli_fetch_assoc($result);
+
+      array_push($arrayPrenomNom, $data['Prenom'] . " " . $data['Nom']);
+    }
+
+    // On affiche les résultats
+    for($i=0; $i<$size; $i++)
+    {
+      echo "Posté par l'utilisateur: " . $arrayPrenomNom[$i] . "<br>";
+      echo "Contenu: " . $arrayContenu[$i] . "<br>";
+      echo "Date de publication: " . $arrayDatePublication[$i] . "<br>";
+      echo "Lieu: " . $arrayLieu[$i] . "<br>";
+      echo "ModeVisibilite: " . $arrayModeVisiblite[$i] . "<br>";
+    }
+  }
+
+  mysqli_close($db_handle);
+ 
 ?>
 
 <!doctype html>
@@ -17,7 +73,7 @@
     <link rel="icon" href="../../../../favicon.ico">
 
     <!-- >WHAT MATE???? -->
-    <title>Starter Template for Bootstrap</title>
+    <title>Votre poste est :</title>
 
     <!-- Bootstrap core CSS -->
       <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" rel="stylesheet">
@@ -50,7 +106,7 @@
           </li>
             <!-- Bouton réseau -->
           <li class="nav-item -brand bouton">
-            <a class="nav-link" href="AfficherAmis.php">Réseau</a>
+            <a class="nav-link" href="#">Réseau</a>
           </li>
           <!-- Bouton emplois -->
           <li class="nav-item -brand bouton">
