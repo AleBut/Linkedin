@@ -15,7 +15,12 @@
     <link rel="icon" href="../../../../favicon.ico">
 
     <!-- >WHAT MATE???? -->
+      
     <title>Profil</title>
+      
+ <!-- Bootstrap core CSS -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" rel="stylesheet">
+
 
     <!-- Bootstrap core CSS -->
       <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" rel="stylesheet">
@@ -76,22 +81,26 @@
 
     <main role="main" class="container">
 
-      <section>
-        <div class="background">
-          <img src="ProfilBackG.jpg" alt="Fond d'écran" style='height: 100%; width: 100%; object-fit: contain'>
+      <section class = "background">
+           <div >
+          <img src="ProfilImage.jpg"  class = "arrondi pp" height="">
+               <h2 class="nom">Benjamin Chardin</h2>
         </div>
       </section>
 
-      <section>
+      <section style="margin-top:25px;">
+         
 
         <div class = "statut">
           <h3>À propos de moi</h3>
           <p>Emploi en cours:</p>
         </div>
-
-        <div class = "profil">
-          <img src="ProfilImage.jpg"  class = "arrondi">
-        </div>
+          <div class = "boutonsp">
+               <button class="btn btn-lg  btn-block btngr egn " type="submit">Modifier Profil</button>
+          <button class="btn btn-lg  btn-block btngr  " type="submit">Photos</button>
+             
+          </div>
+        
 
         <div class = "informations">
           <h3>Informations:</h3>

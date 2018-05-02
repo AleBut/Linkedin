@@ -1,20 +1,49 @@
-body {
+.body {
   background-color: #F5F5F5;
 }
+.pp {
+   margin-left: 40%;
 
+}
+.nom{
+    padding-top: -10px;
+    color: white;
+    text-align: center;
+    margin-bottom: 4%;
+}
 .background {
+    padding-top: 100px;
+    background-image: url("ProfilBackG.jpg");
+background-repeat: repeat-x;
+height: 30%;
+width: 100%;
 }
-
+.btngr {
+    background-color :cornflowerblue;
+    color : white;
+    border-color: cornflowerblue;    
+}
+.btngr:hover {
+    cursor:auto;
+    background-color:cadetblue;
+}
 .statut {
-	text-align : left;
+	float: left;
+    display: inline;
+   width: 33%;
 }
 
-.profil {
-	text-align : center;
+.boutonsp {
+	float: left;
+    display: inline;
+    width: 30%;
 }
 
 .informations {
-	text-align : right;
+    margin-left: 25px;
+	float: left;
+    display: inline;
+    width: 33%;
 }
 
 .arrondi {
