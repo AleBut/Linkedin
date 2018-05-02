@@ -3,18 +3,27 @@
   session_start();
   $ID_user = $_SESSION['ID_user'];
 
+  // Récupérer les prénoms du correspondant
+  $Prenom_destinataire = "";
+  $Prenom_utilisateur = "";
+
+  // Récupérer l'ID du destinataire du message
+  if($_POST["destinataire"])
+  {
+    $ID_destinataire = $_POST["destinataire"];
+    $_SESSION['ID_destinataire'] = $ID_destinataire;
+  }
+  else
+    $ID_destinataire = $_SESSION['ID_destinataire'];
+    
+
+  // Récupération du potentiel message envoyé avant le rechargement de la page
+  $message = isset($_POST["message"])? $_POST["message"]: "";
+
   // Variables utilisées
-    // Table utilisateur
-  $PrenomNom = "";
-  $Mail = "";
+  $array_Messages = array();
+  $array_Expediteurs = array();
 
-    // Table description
-  $Description = "Pas encore de description!";
-  $PhotoProfil = "imageProfilDefault.jpg";
-  $PhotoArrierePlan = "imageBackgroundDefault.jpg";
-
-    // Table experience
-  $Emploi = "";
 
   // Identifier BDD
   $database = "linkedin";
@@ -27,43 +36,55 @@
   // Si BDD existe
   if($db_found)
   {
+    // Si on doit d'abord envoyer un message
+    if($message != "")
+    {
+      $sql = "INSERT INTO message (ID_message, ID_expediteur, ID_destinataire, Message, Date) VALUES (NULL, $ID_user, $ID_destinataire, '$message', CURRENT_TIMESTAMP)";
+
+      mysqli_query($db_handle, $sql);
+    }
+
+
     // Requete table utilisateur
-    $sql = "SELECT * FROM utilisateur WHERE ID_user = " . $ID_user;
+    $sql = "SELECT Prenom FROM utilisateur WHERE ID_user = " . $ID_user;
+    $result = mysqli_query($db_handle, $sql);
+    $data = mysqli_fetch_assoc($result);
+
+    // On récupère le prenom de l'utilisateur
+    $Prenom_utilisateur = $data['Prenom'];
+
+    // Requete table utilisateur
+    $sql = "SELECT Prenom FROM utilisateur WHERE ID_user = " .  $ID_destinataire;
     $result = mysqli_query($db_handle, $sql);
     $data = mysqli_fetch_assoc($result);
 
     // On récupère Prenom et Nom pour le profil
-    $PrenomNom = $data['Prenom'] . " " . $data['Nom'];
-
-    // On récupère le mail
-    $Mail = $data['Mail'];
+    $Prenom_destinataire = $data['Prenom'];
 
 
-    // Requete table Description
-    $sql = "SELECT * FROM description WHERE ID_user = " . $ID_user;
+    // Requete historique des messages entre l'utilisateur et le destinateur
+    $sql = "SELECT * FROM message WHERE ( ID_expediteur = " . $ID_user . " AND ID_destinataire = " . $ID_destinataire . " ) OR ( ID_expediteur = " . $ID_destinataire . " AND ID_destinataire = " . $ID_user . " ) ORDER BY Date";
     $result = mysqli_query($db_handle, $sql);
-    $data = mysqli_fetch_assoc($result);
 
-    if(!empty($data))
+    while($data = mysqli_fetch_assoc($result))    
     {
-      $Description = $data['Description'];
-      $PhotoProfil = $data['PhotoProfil'];
-      $PhotoArrierePlan = $data['ImageFond'];
+      if($data['ID_expediteur'] != $ID_user) 
+        array_push($array_Expediteurs, $Prenom_destinataire); // Si c'est envoyé par le destinataire
+      else
+        array_push($array_Expediteurs, $Prenom_utilisateur); // Si c'est envoyé par l'utilisateur
+
+      array_push($array_Messages, $data['Message']);
     }
 
-
-    // Requete table experience
-    $sql = "SELECT * FROM experience WHERE ID_user = " . $ID_user . " ORDER BY DateFin DESC";
-    $result = mysqli_query($db_handle, $sql);
-    $data = mysqli_fetch_assoc($result);
-
-    if(!empty($data))
-      $Emploi = $data['Entreprise'];
-    else
-      $Emploi = "Sans emploi";
+    // Affichage de la conversation
+    echo "-----------------------<br>";
+    for($i = 0; $i < sizeof($array_Messages); $i++)
+    {
+      echo "[" . $array_Expediteurs[$i] . "] : " . $array_Messages[$i] . "<br>";
+    }
+    echo "-----------------------<br>";
   }
-  mysqli_close($db_handle);
-
+   mysqli_close($db_handle);
 ?>
 
 <!doctype html>
@@ -75,13 +96,13 @@
     <meta name="author" content="">
     <link rel="icon" href="../../../../favicon.ico">
       
-    <title>Profil</title>
+    <title>Messagerie</title>
       
     <!-- Bootstrap core CSS -->
       <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" rel="stylesheet">
 
     <!-- Custom styles for this template -->
-    <link href="Profil.css" rel="stylesheet">
+    <link href="EnvoyerMessage.css" rel="stylesheet">
   </head>
 
   <body>
@@ -113,16 +134,16 @@
           <li class="nav-item -brand bouton">
             <a class="nav-link" href="#">Emplois</a>
           </li>
-          <!-- Bouton messagerie -->
-          <li class="nav-item -brand bouton">
+          <!-- Bouton messagerie ACTIVE -->
+          <li class="nav-item active -brand bouton">
             <a class="nav-link" href="Messagerie.php">Messagerie</a>
           </li>
           <!-- Bouton notifications -->
           <li class="nav-item -brand bouton">
             <a class="nav-link" href="#">Notifications</a>
           </li>
-          <!-- Bouton profil ACTIVE -->
-          <li class="nav-item active -brand bouton">
+          <!-- Bouton profil -->
+          <li class="nav-item -brand bouton">
             <a class="nav-link" href="Profil.php">Profil</a>
           </li>
           <!-- Bouton Deconnexion -->
@@ -134,39 +155,18 @@
     </nav>
 
     <main role="main" class="container">
-
-      <!-- Photo background + photo profil + prenom/nom -->
-      <section class = "background"  style = "background-image: url(<?php echo $PhotoArrierePlan?>);">
-        <div >
-          <img src= <?php echo $PhotoProfil?>  class = "arrondi pp" height="">
-          <h2 class="nom"><?php echo $PrenomNom?></h2>
-        </div>
-      </section>
-
-      <!-- Statut de la personne + boutons de modification + informations -->
-      <section style="margin-top:25px;">
-        <div class = "statut">
-          <h3>À propos de moi</h3>
-          <p>Emploi en cours: <?php echo $Emploi?></p>
-        </div>
-
-        <div class = "boutonsp">
-          <button class="btn btn-lg  btn-block btngr egn " type="submit">Modifier Profil</button>
-          <button class="btn btn-lg  btn-block btngr  " type="submit">Photos</button>
-        </div>
-        
-        <div class = "informations">
-          <h3>Informations:</h3>
-          <p>Email: <?php echo $Mail?></p>
-          <p>CV:</p>
-        </div>
-      </section>
-
-      <!-- Description de la personne -->
-      <section>
-         <p>Description: <?php echo $Description?></p>
-       </section>
-
+      <div class="starter-template">
+          <form method="POST" action="EnvoyerMessage.php">
+            <table>
+          <tr>
+            <td><input type="hidden" name="destinataire"></td> <!-- Grosse douille DEMANDER EXPLICATION -->
+            <td>Chat: </td>
+            <td><input type="text" name="message"></td>
+          </tr>
+        </table>
+        <input type="submit" name="Envoyer=" value="Envoyer" >
+      </form>
+      </div>
     </main><!-- /.container -->
 
     <!-- Bootstrap core JavaScript

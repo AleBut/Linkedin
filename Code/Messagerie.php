@@ -3,8 +3,49 @@
 	session_start();
 	$ID_user = $_SESSION['ID_user'];
 
-	echo "Bienvenue dans votre accueil ! <br>";
-	echo "Votre ID est " . $ID_user;
+	// Variables utilisées
+	$arrayID_amis = array();
+	$array_PrenomNom = array();
+
+
+	// Identifier BDD
+	$database = "linkedin";
+	// Connecter utilisateur à MYSQL
+	$db_handle = mysqli_connect('localhost', 'root', '');
+	// Connecter l'utilisateur à la BDD
+	$db_found = mysqli_select_db($db_handle, $database);
+
+
+	// Si BDD existe
+	if($db_found)
+	{
+		// On stocke les résultats de la requête
+	    $sql = "SELECT * FROM connexion WHERE ID_user_1 = " .$ID_user. " OR ID_user_2 = " .$ID_user;
+	    $result = mysqli_query($db_handle, $sql);
+
+	    while($data = mysqli_fetch_assoc($result))    
+	    {
+	      if($data['ID_user_1']!=$ID_user)
+	          array_push($arrayID_amis,$data['ID_user_1']);
+	      else
+	          array_push($arrayID_amis, $data['ID_user_2']);
+	    }
+
+	    foreach ($arrayID_amis as $ID_ami)
+	    {
+	    	$sql = "SELECT * FROM utilisateur WHERE ID_user = " . $ID_ami;
+	    	$result = mysqli_query($db_handle, $sql);
+    		$data = mysqli_fetch_assoc($result);
+
+    		array_push($array_PrenomNom,  $data['Prenom'] . " " . $data['Nom']);
+	    }
+
+	    foreach($array_PrenomNom as $PrenomNom)
+	    {
+	    	echo " je suis ami avec : " . $PrenomNom . "<br>";
+	    }
+	}
+	 mysqli_close($db_handle);
 ?>
 
 <!doctype html>
@@ -15,18 +56,17 @@
     <meta name="description" content="">
     <meta name="author" content="">
     <link rel="icon" href="../../../../favicon.ico">
-
-    <title>Accueil</title>
-
+      
+    <title>Messagerie</title>
+      
     <!-- Bootstrap core CSS -->
       <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" rel="stylesheet">
 
     <!-- Custom styles for this template -->
-    <link href="Accueil.css" rel="stylesheet">
+    <link href="Messagerie.css" rel="stylesheet">
   </head>
 
   <body>
-
     <nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top">
 
       <!-- Bouton à gauche -->
@@ -43,8 +83,8 @@
         </form>
 
         <ul class="navbar-nav mr-auto -brand BarBoutons">
-          <!-- Bouton accueil ACTIVE -->
-          <li class="nav-item active -brand bouton">
+          <!-- Bouton accueil -->
+          <li class="nav-item -brand bouton">
             <a class="nav-link" href="Accueil.php">Accueil <span class="sr-only">(current)</span></a>
           </li>
             <!-- Bouton réseau -->
@@ -55,8 +95,8 @@
           <li class="nav-item -brand bouton">
             <a class="nav-link" href="#">Emplois</a>
           </li>
-          <!-- Bouton messagerie -->
-          <li class="nav-item -brand bouton">
+          <!-- Bouton messagerie ACTIVE -->
+          <li class="nav-item active -brand bouton">
             <a class="nav-link" href="Messagerie.php">Messagerie</a>
           </li>
           <!-- Bouton notifications -->
@@ -76,14 +116,16 @@
     </nav>
 
     <main role="main" class="container">
-
-      <div class="starter-template">
-        <h1>Publiez un post </h1>
-          <form action="Accueil.php" method="post" enctype="multipart/form-data">
-        <input type="file" name="fichier" />
-              <br><br>
-              <button type="submit">Connexion</button>
-          </form>
+    	<div class="starter-template">
+	        <form method="POST" action="EnvoyerMessage.php">
+	        	<table>
+					<tr>
+						<td>ID destinataire: </td>
+						<td><input type="text" name="destinataire"></td>
+					</tr>
+				</table>
+				<input type="submit" name="Envoyer un message" value="Envoyer un message" >
+			</form>
       </div>
 
     </main><!-- /.container -->
