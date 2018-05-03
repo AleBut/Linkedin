@@ -1,0 +1,23 @@
+body {
+  padding-top: 5rem;
+}
+.starter-template {
+  padding: 3rem 1.5rem;
+  text-align: center;
+}
+
+
+.navbar {
+	background-color:#283E4A;
+  	text-align: center;
+}
+.logo {
+	margin-left: 50px;
+	color:#2CA94E;
+}
+.barBoutons {
+	margin-left: 100px;
+}
+.bouton {
+	margin-right: 10px;
+}
