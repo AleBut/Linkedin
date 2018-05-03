@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1:3306
--- Généré le :  lun. 30 avr. 2018 à 21:13
+-- Généré le :  jeu. 03 mai 2018 à 08:26
 -- Version du serveur :  5.7.19
 -- Version de PHP :  5.6.31
 
@@ -141,7 +141,7 @@ CREATE TABLE IF NOT EXISTS `description` (
 --
 
 INSERT INTO `description` (`ID_description`, `ID_user`, `Description`, `CV`, `PhotoProfil`, `ImageFond`, `ModeVisibilite`) VALUES
-(1, 1, 'Wallah je le jure', 'My passions are shopping, wine and being gorgeous', 'image.jpeg', 'image.jpeg', 0);
+(1, 1, 'Wallah je le jure', 'My passions are shopping, wine and being gorgeous', 'imageProfilAlexis.jpg', 'imageBackgroundAlexis.jpg', 0);
 
 -- --------------------------------------------------------
 
@@ -192,7 +192,7 @@ CREATE TABLE IF NOT EXISTS `experience` (
 --
 
 INSERT INTO `experience` (`ID_experience`, `ID_user`, `TypeExperience`, `Entreprise`, `DateArrive`, `DateFin`, `Localisation`, `Commentaires`) VALUES
-(1, 3, 'Branlette', 'L\'épicerie d\'Ahmed', '2018-04-11', '2018-04-12', 'La téci', 'Wallah');
+(1, 1, 'Branlette', 'L\'epicerie d\'Ahmed', '2018-04-11', '2018-04-12', 'La téci', 'Wallah');
 
 -- --------------------------------------------------------
 
@@ -257,17 +257,19 @@ CREATE TABLE IF NOT EXISTS `message` (
   `ID_expediteur` int(10) NOT NULL,
   `ID_destinataire` int(10) NOT NULL,
   `Message` text NOT NULL,
+  `Date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`ID_message`),
   KEY `ID_expediteur` (`ID_expediteur`,`ID_destinataire`),
   KEY `ID_destinataire` (`ID_destinataire`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=latin1;
 
 --
 -- Déchargement des données de la table `message`
 --
 
-INSERT INTO `message` (`ID_message`, `ID_expediteur`, `ID_destinataire`, `Message`) VALUES
-(1, 1, 2, 'Le plus bo des bojamin');
+INSERT INTO `message` (`ID_message`, `ID_expediteur`, `ID_destinataire`, `Message`, `Date`) VALUES
+(1, 1, 2, 'Le plus bo des bojamin', '2018-05-02 14:35:15'),
+(2, 2, 1, 'Merci bg', '2018-05-02 20:22:58');
 
 -- --------------------------------------------------------
 
@@ -309,14 +311,15 @@ CREATE TABLE IF NOT EXISTS `post` (
   `ModeVisibilite` int(3) NOT NULL,
   PRIMARY KEY (`ID_post`),
   KEY `ID_user` (`ID_user`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
 
 --
 -- Déchargement des données de la table `post`
 --
 
 INSERT INTO `post` (`ID_post`, `ID_user`, `Contenu`, `DatePublication`, `Lieu`, `ModeVisibilite`) VALUES
-(1, 2, 'Salut les filles, nouveau Vlog beauté!', '2018-04-30', 'Saint-Cloud', 0);
+(1, 2, 'Salut les filles, nouveau Vlog beaute!', '2018-04-30', 'Saint-Cloud', 0),
+(2, 3, 'Je regale chez moi', '2018-05-02', 'Chez moi', 0);
 
 -- --------------------------------------------------------
 
@@ -334,7 +337,7 @@ CREATE TABLE IF NOT EXISTS `utilisateur` (
   `MotDePasse` varchar(30) NOT NULL,
   `DroitsAdmins` varchar(3) NOT NULL DEFAULT 'NON',
   PRIMARY KEY (`ID_user`)
-) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
 
 --
 -- Déchargement des données de la table `utilisateur`
