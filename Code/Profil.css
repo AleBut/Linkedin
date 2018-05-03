@@ -1,4 +1,4 @@
-.body {
+body {
   background-color: #F5F5F5;
 }
 .pp {
@@ -6,6 +6,10 @@
 
 }
 
+.navbar {
+    background-color:#283E4A;
+    text-align: center;
+}
 .logo {
     margin-left: 50px;
     color:#2CA94E;

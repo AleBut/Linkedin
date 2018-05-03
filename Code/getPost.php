@@ -55,7 +55,7 @@
       echo "Contenu: " . $arrayContenu[$i] . "<br>";
       echo "Date de publication: " . $arrayDatePublication[$i] . "<br>";
       echo "Lieu: " . $arrayLieu[$i] . "<br>";
-      echo "ModeVisibilite: " . $arrayModeVisiblite[$i] . "<br>";
+      echo "ModeVisibilite: " . $arrayModeVisiblite[$i] . "<br><br>";
     }
   }
 
@@ -64,7 +64,7 @@
 ?>
 
 <!doctype html>
-<html lang="en">
+<html lang="fr">
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">

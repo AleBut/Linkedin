@@ -3,9 +3,6 @@
 	session_start();
 	$ID_user = $_SESSION['ID_user'];
 
-	echo "Bienvenue dans votre accueil ! <br>";
-	echo "Votre ID est " . $ID_user . "<br><br>";
-
   // Variables 
   $arrayID_moi= array();
   $arrayID_amis = array();
@@ -44,30 +41,28 @@
     
     for($i=0; $i<$size; $i++)
     {
-        $sql = "SELECT * FROM connexion WHERE ID_user_1 = " .$arrayID_amis[$i]. " OR ID_user_2 = " .$arrayID_amis[$i];
-         $result = mysqli_query($db_handle, $sql);
-    while($data = mysqli_fetch_assoc($result))   
-    {
-       
-      if($data['ID_user_1']!=$arrayID_amis[$i]){
-        array_push($arrayID_amisamis,$data['ID_user_1']);
-      }
-      if($data['ID_user_2']!=$arrayID_amis[$i]){
-          
+      $sql = "SELECT * FROM connexion WHERE ID_user_1 = " .$arrayID_amis[$i]. " OR ID_user_2 = " .$arrayID_amis[$i];
+      $result = mysqli_query($db_handle, $sql);
+      while($data = mysqli_fetch_assoc($result))   
+      {
+         
+        if($data['ID_user_1']!=$arrayID_amis[$i])
+          array_push($arrayID_amisamis,$data['ID_user_1']);
+        else
           array_push($arrayID_amisamis, $data['ID_user_2']);
       }
-        
     }
+    
+    // On supprime les doublons
+    $arrayID_amisamis = array_unique($arrayID_amisamis);
+    $arrayID_amisamis = array_diff($arrayID_amisamis, $arrayID_amis);
+    $arrayID_amisamis= array_diff($arrayID_amisamis, $arrayID_moi);
+    
+    if(count($arrayID_amisamis)==0){
+        echo "aucune suggestion <br>";
     }
-       
-      $arrayID_amisamis = array_unique($arrayID_amisamis);
-      $arrayID_amisamis = array_diff($arrayID_amisamis, $arrayID_amis);
-      $arrayID_amisamis= array_diff($arrayID_amisamis, $arrayID_moi);
-      
-      if(count($arrayID_amisamis)==0){
-          echo "aucune suggestion <br>";
-      }
-  foreach ($arrayID_amisamis as $value) 
+
+    foreach ($arrayID_amisamis as $value) 
     {
       $sql = "SELECT Prenom, Nom FROM utilisateur WHERE ID_user = " . $value;
       $result = mysqli_query($db_handle, $sql);
@@ -81,7 +76,8 @@
     {
       echo "Je devrai etre amis avec : " . $arrayPrenomSuggestions[$i] . "<br>";
     }
-      $size = count($arrayID_amis);
+
+    $size = count($arrayID_amis);
     for($i=0; $i<$size; $i++)
     {
       $sql = "SELECT Prenom, Nom FROM utilisateur WHERE ID_user = " . $arrayID_amis[$i];
@@ -99,5 +95,5 @@
   }
 
   mysqli_close($db_handle);
- 
+
 ?>
