@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1:3306
--- Généré le :  jeu. 03 mai 2018 à 08:38
+-- Généré le :  jeu. 03 mai 2018 à 10:40
 -- Version du serveur :  5.7.19
 -- Version de PHP :  5.6.31
 
@@ -80,7 +80,7 @@ CREATE TABLE IF NOT EXISTS `connexion` (
   `ID_connexion` int(100) NOT NULL AUTO_INCREMENT,
   `ID_user_1` int(10) NOT NULL,
   `ID_user_2` int(10) NOT NULL,
-  `DateConnexion` date NOT NULL,
+  `DateConnexion` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`ID_connexion`),
   KEY `ID_user_1` (`ID_user_1`),
   KEY `ID_user_2` (`ID_user_2`)
@@ -91,8 +91,8 @@ CREATE TABLE IF NOT EXISTS `connexion` (
 --
 
 INSERT INTO `connexion` (`ID_connexion`, `ID_user_1`, `ID_user_2`, `DateConnexion`) VALUES
-(1, 1, 2, '2018-04-30'),
-(2, 2, 3, '2018-04-30');
+(1, 1, 2, '2018-04-29 22:00:00'),
+(2, 2, 3, '2018-04-29 22:00:00');
 
 -- --------------------------------------------------------
 
@@ -185,7 +185,7 @@ CREATE TABLE IF NOT EXISTS `experience` (
   `Commentaires` text NOT NULL,
   PRIMARY KEY (`ID_experience`),
   KEY `ID_user` (`ID_user`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
 
 --
 -- Déchargement des données de la table `experience`
@@ -261,7 +261,7 @@ CREATE TABLE IF NOT EXISTS `message` (
   PRIMARY KEY (`ID_message`),
   KEY `ID_expediteur` (`ID_expediteur`,`ID_destinataire`),
   KEY `ID_destinataire` (`ID_destinataire`)
-) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=19 DEFAULT CHARSET=latin1;
 
 --
 -- Déchargement des données de la table `message`
@@ -269,7 +269,13 @@ CREATE TABLE IF NOT EXISTS `message` (
 
 INSERT INTO `message` (`ID_message`, `ID_expediteur`, `ID_destinataire`, `Message`, `Date`) VALUES
 (1, 1, 2, 'Le plus bo des bojamin', '2018-05-02 14:35:15'),
-(2, 2, 1, 'Merci bg', '2018-05-02 20:22:58');
+(2, 2, 1, 'Merci bg', '2018-05-02 20:22:58'),
+(13, 1, 2, 'Salut', '2018-05-03 09:04:12'),
+(14, 2, 1, 'LOL', '2018-05-03 10:32:43'),
+(15, 2, 1, 'T bo', '2018-05-03 10:33:04'),
+(16, 2, 1, 'OK', '2018-05-03 10:33:15'),
+(17, 1, 2, 'Ca va?', '2018-05-03 10:33:29'),
+(18, 1, 2, 'Thomas te dit t moche', '2018-05-03 10:36:48');
 
 -- --------------------------------------------------------
 
@@ -284,10 +290,21 @@ CREATE TABLE IF NOT EXISTS `offre` (
   `ID_user_salarie` int(10) DEFAULT NULL,
   `Nom` varchar(30) NOT NULL,
   `Description` text NOT NULL,
+  `Entreprise` varchar(30) NOT NULL,
+  `Localisation` varchar(30) NOT NULL,
   PRIMARY KEY (`ID_offre`),
   KEY `ID_user_recruteur` (`ID_user_recruteur`),
   KEY `ID_user_salarie` (`ID_user_salarie`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
+
+--
+-- Déchargement des données de la table `offre`
+--
+
+INSERT INTO `offre` (`ID_offre`, `ID_user_recruteur`, `ID_user_salarie`, `Nom`, `Description`, `Entreprise`, `Localisation`) VALUES
+(1, 3, NULL, 'Architecture du batiment', 'Secteur immobilier', 'Pierre Co', 'Paris'),
+(2, 2, NULL, 'Nettoyage sanitaire', 'Venez on est bien', 'Benjamin Co', 'Saint cloud'),
+(3, 1, NULL, 'Test', 'Test', 'Alexis Co', 'Paris');
 
 -- --------------------------------------------------------
 
