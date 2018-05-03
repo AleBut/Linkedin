@@ -21,7 +21,9 @@ body {
 .bouton {
 	margin-right: 10px;
 }
-
+.texte{
+    float:left;
+}
 .boutona{
     margin-top: 4px;
 }
