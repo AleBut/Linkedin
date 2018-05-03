@@ -3,6 +3,10 @@
 	session_start();
 	$ID_user = $_SESSION['ID_user'];
 
+  // Variables
+  $arrayNotifs = array(); // Notifs
+
+
   // Identifier BDD
   $database = "linkedin";
   
@@ -14,7 +18,7 @@
   // Si BDD existe
   if($db_found)
   {
-    
+
   }
 
 ?>
@@ -88,6 +92,8 @@
     </nav>
 
     <main role="main" class="container">
+      <div class="starter-template">
+      </div>
 
     </main><!-- /.container -->
 
