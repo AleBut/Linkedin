@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1:3306
--- Généré le :  jeu. 03 mai 2018 à 08:26
+-- Généré le :  jeu. 03 mai 2018 à 08:38
 -- Version du serveur :  5.7.19
 -- Version de PHP :  5.6.31
 
@@ -274,6 +274,24 @@ INSERT INTO `message` (`ID_message`, `ID_expediteur`, `ID_destinataire`, `Messag
 -- --------------------------------------------------------
 
 --
+-- Structure de la table `offre`
+--
+
+DROP TABLE IF EXISTS `offre`;
+CREATE TABLE IF NOT EXISTS `offre` (
+  `ID_offre` int(10) NOT NULL AUTO_INCREMENT,
+  `ID_user_recruteur` int(10) NOT NULL,
+  `ID_user_salarie` int(10) DEFAULT NULL,
+  `Nom` varchar(30) NOT NULL,
+  `Description` text NOT NULL,
+  PRIMARY KEY (`ID_offre`),
+  KEY `ID_user_recruteur` (`ID_user_recruteur`),
+  KEY `ID_user_salarie` (`ID_user_salarie`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
 -- Structure de la table `partage`
 --
 
@@ -416,6 +434,13 @@ ALTER TABLE `media`
 ALTER TABLE `message`
   ADD CONSTRAINT `message_ibfk_1` FOREIGN KEY (`ID_expediteur`) REFERENCES `utilisateur` (`ID_user`),
   ADD CONSTRAINT `message_ibfk_2` FOREIGN KEY (`ID_destinataire`) REFERENCES `utilisateur` (`ID_user`);
+
+--
+-- Contraintes pour la table `offre`
+--
+ALTER TABLE `offre`
+  ADD CONSTRAINT `offre_ibfk_1` FOREIGN KEY (`ID_user_recruteur`) REFERENCES `utilisateur` (`ID_user`),
+  ADD CONSTRAINT `offre_ibfk_2` FOREIGN KEY (`ID_user_salarie`) REFERENCES `utilisateur` (`ID_user`);
 
 --
 -- Contraintes pour la table `partage`
