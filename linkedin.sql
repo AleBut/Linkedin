@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1:3306
--- Généré le :  jeu. 03 mai 2018 à 10:40
+-- Généré le :  jeu. 03 mai 2018 à 15:11
 -- Version du serveur :  5.7.19
 -- Version de PHP :  5.6.31
 
@@ -84,15 +84,16 @@ CREATE TABLE IF NOT EXISTS `connexion` (
   PRIMARY KEY (`ID_connexion`),
   KEY `ID_user_1` (`ID_user_1`),
   KEY `ID_user_2` (`ID_user_2`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=latin1;
 
 --
 -- Déchargement des données de la table `connexion`
 --
 
 INSERT INTO `connexion` (`ID_connexion`, `ID_user_1`, `ID_user_2`, `DateConnexion`) VALUES
-(1, 1, 2, '2018-04-29 22:00:00'),
-(2, 2, 3, '2018-04-29 22:00:00');
+(2, 2, 3, '2018-04-29 22:00:00'),
+(4, 1, 4, '2018-05-03 14:59:40'),
+(5, 2, 1, '2018-05-03 15:07:36');
 
 -- --------------------------------------------------------
 
@@ -105,17 +106,11 @@ CREATE TABLE IF NOT EXISTS `demandeconnexion` (
   `ID_demandeConnexion` int(10) NOT NULL AUTO_INCREMENT,
   `ID_expediteur` int(10) NOT NULL,
   `ID_destinataire` int(10) NOT NULL,
+  `Date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`ID_demandeConnexion`),
   KEY `ID_destinataire` (`ID_destinataire`),
   KEY `ID_expediteur` (`ID_expediteur`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
-
---
--- Déchargement des données de la table `demandeconnexion`
---
-
-INSERT INTO `demandeconnexion` (`ID_demandeConnexion`, `ID_expediteur`, `ID_destinataire`) VALUES
-(1, 3, 1);
+) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -134,14 +129,16 @@ CREATE TABLE IF NOT EXISTS `description` (
   `ModeVisibilite` int(3) NOT NULL,
   PRIMARY KEY (`ID_description`),
   KEY `ID_user` (`ID_user`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
 
 --
 -- Déchargement des données de la table `description`
 --
 
 INSERT INTO `description` (`ID_description`, `ID_user`, `Description`, `CV`, `PhotoProfil`, `ImageFond`, `ModeVisibilite`) VALUES
-(1, 1, 'Wallah je le jure', 'My passions are shopping, wine and being gorgeous', 'imageProfilAlexis.jpg', 'imageBackgroundAlexis.jpg', 0);
+(1, 1, 'Wallah je le jure', 'My passions are shopping, wine and being gorgeous', 'imageProfilAlexis.jpg', 'imageBackgroundAlexis.jpg', 0),
+(2, 2, 'Bo bojamin', 'CV', 'imageProfilBenjamin.jpg', 'imageBackgroundDefault', 0),
+(3, 3, 'Pierre', 'P', 'imageProfilPierre.jpg', 'imageBackgroundDefault', 0);
 
 -- --------------------------------------------------------
 
@@ -261,7 +258,7 @@ CREATE TABLE IF NOT EXISTS `message` (
   PRIMARY KEY (`ID_message`),
   KEY `ID_expediteur` (`ID_expediteur`,`ID_destinataire`),
   KEY `ID_destinataire` (`ID_destinataire`)
-) ENGINE=InnoDB AUTO_INCREMENT=19 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=21 DEFAULT CHARSET=latin1;
 
 --
 -- Déchargement des données de la table `message`
@@ -275,7 +272,9 @@ INSERT INTO `message` (`ID_message`, `ID_expediteur`, `ID_destinataire`, `Messag
 (15, 2, 1, 'T bo', '2018-05-03 10:33:04'),
 (16, 2, 1, 'OK', '2018-05-03 10:33:15'),
 (17, 1, 2, 'Ca va?', '2018-05-03 10:33:29'),
-(18, 1, 2, 'Thomas te dit t moche', '2018-05-03 10:36:48');
+(18, 1, 2, 'Thomas te dit t moche', '2018-05-03 10:36:48'),
+(19, 1, 2, 'Ca va?', '2018-05-03 13:56:48'),
+(20, 2, 1, 'OK', '2018-05-03 13:57:20');
 
 -- --------------------------------------------------------
 
@@ -341,7 +340,7 @@ CREATE TABLE IF NOT EXISTS `post` (
   `ID_post` int(10) NOT NULL AUTO_INCREMENT,
   `ID_user` int(10) NOT NULL,
   `Contenu` text NOT NULL,
-  `DatePublication` date NOT NULL,
+  `DatePublication` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `Lieu` varchar(30) NOT NULL,
   `ModeVisibilite` int(3) NOT NULL,
   PRIMARY KEY (`ID_post`),
@@ -353,8 +352,8 @@ CREATE TABLE IF NOT EXISTS `post` (
 --
 
 INSERT INTO `post` (`ID_post`, `ID_user`, `Contenu`, `DatePublication`, `Lieu`, `ModeVisibilite`) VALUES
-(1, 2, 'Salut les filles, nouveau Vlog beaute!', '2018-04-30', 'Saint-Cloud', 0),
-(2, 3, 'Je regale chez moi', '2018-05-02', 'Chez moi', 0);
+(1, 2, 'Salut les filles, nouveau Vlog beaute!', '2018-04-30 00:00:00', 'Saint-Cloud', 0),
+(2, 3, 'Je regale chez moi', '2018-05-02 00:00:00', 'Chez moi', 0);
 
 -- --------------------------------------------------------
 
@@ -372,7 +371,7 @@ CREATE TABLE IF NOT EXISTS `utilisateur` (
   `MotDePasse` varchar(30) NOT NULL,
   `DroitsAdmins` varchar(3) NOT NULL DEFAULT 'NON',
   PRIMARY KEY (`ID_user`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
 
 --
 -- Déchargement des données de la table `utilisateur`
@@ -381,7 +380,8 @@ CREATE TABLE IF NOT EXISTS `utilisateur` (
 INSERT INTO `utilisateur` (`ID_user`, `Prenom`, `Nom`, `DateNaissance`, `Mail`, `MotDePasse`, `DroitsAdmins`) VALUES
 (1, 'Alexis', 'Butin', '1997-05-14', 'alexis.butin@edu.ece.fr', 'abutin', 'NON'),
 (2, 'Benjamin', 'Chardin', '1997-01-01', 'benjamin.chardin@edu.ece.fr', 'bchardin', 'NON'),
-(3, 'Pierre', 'Mouli-Castillo', '1997-01-01', 'pierre.mouli-castillo@edu.ece.fr', 'pmoulicastillo', 'OUI');
+(3, 'Pierre', 'Mouli-Castillo', '1997-01-01', 'pierre.mouli-castillo@edu.ece.fr', 'pmoulicastillo', 'OUI'),
+(4, 'Jacques', 'Boulon', '2018-05-08', 'jb@jb.fr', 'jb', 'NON');
 
 --
 -- Contraintes pour les tables déchargées
