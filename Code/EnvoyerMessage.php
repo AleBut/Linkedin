@@ -47,6 +47,7 @@
     }
 
 
+
     // Requete table utilisateur
     $sql = "SELECT Prenom FROM utilisateur WHERE ID_user = " . $ID_user;
     $result = mysqli_query($db_handle, $sql);
