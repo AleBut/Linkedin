@@ -4,7 +4,13 @@
 	$ID_user = $_SESSION['ID_user'];
 
   // Variables
-  $arrayNotifs = array(); // Notifs
+  $demandeAmis = array(); // Demande en attente
+  $demandeAmisPrenomNom = array(); // Nom Prenom
+  $demandeAmisPhotoProfil = array(); // Photo profil
+
+  $requeteAmis = array(); // Demande à approuver
+  $requeteAmisPrenomNom = array(); // Nom Prenom
+  $requeteAmisPhotoProfil = array(); // Photo profil
 
 
   // Identifier BDD
@@ -18,7 +24,68 @@
   // Si BDD existe
   if($db_found)
   {
+    // On stocke les résultats de la requête (recherches demandes amis à accepter)
+    $sql = "SELECT * FROM demandeconnexion WHERE ID_destinataire = " .$ID_user . " ORDER BY Date";
+    $result = mysqli_query($db_handle, $sql);
+    while($data = mysqli_fetch_assoc($result))    
+    {
+      array_push($requeteAmis, $data['ID_expediteur']);
+    }
 
+    // On récupère le Prenom / Nom des demandes d'amis à accepter
+    foreach ($requeteAmis as $value) 
+    {
+      $sql = "SELECT Prenom, Nom FROM utilisateur WHERE ID_user = " . $value;
+      $result = mysqli_query($db_handle, $sql);
+      $data = mysqli_fetch_assoc($result);
+
+      array_push($requeteAmisPrenomNom, $data['Prenom'] . " " . $data['Nom']);
+    }
+
+    // On récupère les photos de profil des demandes d'amis à accepter
+    foreach ($requeteAmis as $value) 
+    {
+      $sql = "SELECT * FROM description WHERE ID_user = " . $value;
+      $result = mysqli_query($db_handle, $sql);
+      $data = mysqli_fetch_assoc($result);
+
+      if(!empty($data))
+        array_push($requeteAmisPhotoProfil, $data['PhotoProfil']);
+      else
+        array_push($requeteAmisPhotoProfil,"imageProfilDefault.jpg");
+    }
+
+
+    // On stocke les résultats de la requête (demandes amis en attente)
+    $sql = "SELECT * FROM demandeconnexion WHERE ID_expediteur = " .$ID_user . " ORDER BY Date";
+    $result = mysqli_query($db_handle, $sql);
+    while($data = mysqli_fetch_assoc($result))    
+    {
+      array_push($demandeAmis, $data['ID_destinataire']);
+    }
+
+    // On récupère le Prenom / Nom des demandes d'amis à accepter
+    foreach ($demandeAmis as $value) 
+    {
+      $sql = "SELECT Prenom, Nom FROM utilisateur WHERE ID_user = " . $value;
+      $result = mysqli_query($db_handle, $sql);
+      $data = mysqli_fetch_assoc($result);
+
+      array_push($demandeAmisPrenomNom, $data['Prenom'] . " " . $data['Nom']);
+    }
+
+    // On récupère les photos de profil des demandes d'amis à accepter
+    foreach ($demandeAmis as $value) 
+    {
+      $sql = "SELECT * FROM description WHERE ID_user = " . $value;
+      $result = mysqli_query($db_handle, $sql);
+      $data = mysqli_fetch_assoc($result);
+
+      if(!empty($data))
+        array_push($demandeAmisPhotoProfil, $data['PhotoProfil']);
+      else
+        array_push($demandeAmisPhotoProfil,"imageProfilDefault.jpg");
+    }
   }
 
 ?>
@@ -38,7 +105,7 @@
       <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" rel="stylesheet">
 
     <!-- Custom styles for this template -->
-    <link href="Accueil.css" rel="stylesheet">
+    <link href="Notifications.css" rel="stylesheet">
   </head>
 
   <body>
@@ -92,8 +159,29 @@
     </nav>
 
     <main role="main" class="container">
-      <div class="starter-template">
-      </div>
+
+    <div class="boxsuggestion">
+      <h2 style="text-align: center; color:cadetblue"> Demandes envoyées: </h2><br>
+
+      <?php for($i=0; $i<sizeof($demandeAmis); $i++) { ?>
+        <img src=<?php echo $demandeAmisPhotoProfil[$i] ?> height="50" width="50"  class="Afficher"/>
+        <p class="texte"><?php echo $demandeAmisPrenomNom[$i] ?></p>
+        <a href="RefuserDemande.php?ID=<?php echo $demandeAmis[$i] ?>"><button class="boutona btn btngr  "> Annuler</button></a>
+        <br><br>
+      <?php } ?>
+    </div><br>
+
+    <div class="boxsuggestion">
+      <h2 style="text-align: center; color:cadetblue"> Demandes à approuver: </h2><br>
+
+      <?php for($i=0; $i<sizeof($requeteAmis); $i++) { ?>
+        <img src=<?php echo $requeteAmisPhotoProfil[$i] ?> height="50" width="50"  class="Afficher"/>
+        <p class="texte"><?php echo $requeteAmisPrenomNom[$i] ?></p>
+        <a href="AccepterDemande.php?ID=<?php echo $requeteAmis[$i] ?>"><button class="boutona btn btngr  "> Accepter</button></a>
+        <a href="RefuserDemande.php?ID=<?php echo $requeteAmis[$i] ?>"><button class="boutona btn btngr  "> Refuser</button></a>
+        <br><br>
+      <?php } ?>
+    </div><br>
 
     </main><!-- /.container -->
 
