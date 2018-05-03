@@ -3,8 +3,20 @@
 	session_start();
 	$ID_user = $_SESSION['ID_user'];
 
-	echo "Bienvenue dans votre accueil ! <br>";
-	echo "Votre ID est " . $ID_user;
+  // Identifier BDD
+  $database = "linkedin";
+  
+  // Connecter utilisateur à MYSQL
+  $db_handle = mysqli_connect('localhost', 'root', '');
+  // Connecter l'utilisateur à la BDD
+  $db_found = mysqli_select_db($db_handle, $database);
+
+  // Si BDD existe
+  if($db_found)
+  {
+    
+  }
+
 ?>
 
 <!doctype html>
@@ -43,8 +55,8 @@
         </form>
 
         <ul class="navbar-nav mr-auto -brand BarBoutons">
-          <!-- Bouton accueil ACTIVE -->
-          <li class="nav-item active -brand bouton">
+          <!-- Bouton accueil  -->
+          <li class="nav-item  -brand bouton">
             <a class="nav-link" href="Accueil.php">Accueil <span class="sr-only">(current)</span></a>
           </li>
             <!-- Bouton réseau -->
@@ -59,8 +71,8 @@
           <li class="nav-item -brand bouton">
             <a class="nav-link" href="Messagerie.php">Messagerie</a>
           </li>
-          <!-- Bouton notifications -->
-          <li class="nav-item -brand bouton">
+          <!-- Bouton notifications ACTIVE -->
+          <li class="nav-item active -brand bouton">
             <a class="nav-link" href="Notifications.php">Notifications</a>
           </li>
           <!-- Bouton profil -->
@@ -76,15 +88,6 @@
     </nav>
 
     <main role="main" class="container">
-
-      <div class="starter-template">
-        <h1>Publiez un post </h1>
-          <form action="Accueil.php" method="post" enctype="multipart/form-data">
-        <input type="file" name="fichier" />
-              <br><br>
-              <button type="submit">Connexion</button>
-          </form>
-      </div>
 
     </main><!-- /.container -->
 
