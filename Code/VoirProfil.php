@@ -88,7 +88,7 @@
     <nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top">
 
       <!-- Bouton à gauche -->
-      <a class="navbar-brand logo" href="#" >ECE'IN</a>
+      <a class="navbar-brand logo" href="Accueil.php" >ECE'IN</a>
 
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
@@ -101,17 +101,17 @@
         </form>
 
         <ul class="navbar-nav mr-auto -brand BarBoutons">
-          <!-- Bouton accueil -->
+          <!-- Bouton accueil  -->
           <li class="nav-item -brand bouton">
             <a class="nav-link" href="Accueil.php">Accueil <span class="sr-only">(current)</span></a>
           </li>
             <!-- Bouton réseau -->
           <li class="nav-item -brand bouton">
-            <a class="nav-link" href="AfficherAmis.php">Réseau</a>
+            <a class="nav-link" href="Reseau.php">Réseau</a>
           </li>
           <!-- Bouton emplois -->
           <li class="nav-item -brand bouton">
-            <a class="nav-link" href="#">Emplois</a>
+            <a class="nav-link" href="Emplois.php">Emplois</a>
           </li>
           <!-- Bouton messagerie -->
           <li class="nav-item -brand bouton">
@@ -119,7 +119,7 @@
           </li>
           <!-- Bouton notifications -->
           <li class="nav-item -brand bouton">
-            <a class="nav-link" href="#">Notifications</a>
+            <a class="nav-link" href="Notifications.php">Notifications</a>
           </li>
           <!-- Bouton profil ACTIVE -->
           <li class="nav-item active -brand bouton">

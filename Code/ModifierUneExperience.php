@@ -42,7 +42,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>LinkedInECE</title>
+    <title>Experience</title>
 
     <!-- Bootstrap core CSS -->
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" rel="stylesheet">
@@ -52,6 +52,54 @@
   </head>
 
   <body class="text-center" >
+    <nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top">
+
+      <!-- Bouton à gauche -->
+      <a class="navbar-brand logo" href="Accueil.php" >ECE'IN</a>
+
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div class="collapse navbar-collapse" id="navbarsExampleDefault">
+        <form class="form-inline my-2 my-lg-0">
+          <input class="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search">
+          <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+        </form>
+
+        <ul class="navbar-nav mr-auto -brand BarBoutons">
+          <!-- Bouton accueil  -->
+          <li class="nav-item -brand bouton">
+            <a class="nav-link" href="Accueil.php">Accueil <span class="sr-only">(current)</span></a>
+          </li>
+            <!-- Bouton réseau -->
+          <li class="nav-item -brand bouton">
+            <a class="nav-link" href="Reseau.php">Réseau</a>
+          </li>
+          <!-- Bouton emplois -->
+          <li class="nav-item -brand bouton">
+            <a class="nav-link" href="Emplois.php">Emplois</a>
+          </li>
+          <!-- Bouton messagerie -->
+          <li class="nav-item -brand bouton">
+            <a class="nav-link" href="Messagerie.php">Messagerie</a>
+          </li>
+          <!-- Bouton notifications -->
+          <li class="nav-item -brand bouton">
+            <a class="nav-link" href="Notifications.php">Notifications</a>
+          </li>
+          <!-- Bouton profil ACTIVE -->
+          <li class="nav-item active -brand bouton">
+            <a class="nav-link" href="Profil.php">Profil</a>
+          </li>
+          <!-- Bouton Deconnexion -->
+          <li class="nav-item -brand bouton">
+            <a class="nav-link" href="Deconnexion.php">Deconnexion</a>
+          </li>
+        </ul>
+      </div>
+    </nav>
+
     <form class="form-signin" action="AppliquerModifExperience.php?ID=<?php echo $_GET['ID'] ?>" method="post">
       <img class="mb-4" src="https://getbootstrap.com/assets/brand/bootstrap-solid.svg" alt="" width="72" height="72">
       <h1 class="h3 mb-3 font-weight-normal">Modifier votre Experience</h1>
@@ -63,10 +111,15 @@
         <br>
     <label for="inputText" class="sr-only">Localisation</label>
       <input type="text" class="form-control" placeholder="Localisation" value="<?php echo $Localisation?>" required autofocus name="Localisation">
-        <br>
+        <br><div style="display: inline;">
+          <p style="float: left;"> Date de début</p>
       <input type="date" name="DateArrive" placeholder="Date d'arrivee" value="<?php echo $DateArrive?>" style="text-align : right;">
-        <br><br>
+      <br>
+    </div>
+        <br><div style="display: inline;">
+          <p style="float: left;"> Date de fin  </p>
       <input type="date" name= "DateFin" placeholder="Date de fin" value="<?php echo $DateFin?>" style="text-align : right;">
+        </div>
         <br><br>
       <label for="inputText" class="sr-only">Commentaires</label>
       <input type="text" class="form-control" placeholder="Commentaires" value="<?php echo $Commentaires?>" required autofocus name="Commentaires">

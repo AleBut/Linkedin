@@ -3,10 +3,7 @@
   session_start();
   $ID_user = $_SESSION['ID_user'];
 
-
-  // Récupérer l'ID de l'emploi
-  $ID_emploi = isset($_POST["emploi"])? $_POST["emploi"]: "";
-    
+  $ID_emploi = isset($_GET["ID"])? $_GET["ID"]: "";
 
   // Identifier BDD
   $database = "linkedin";
