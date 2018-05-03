@@ -22,28 +22,9 @@
 	// Si BDD existe
 	if($db_found)
 	{
-
-		// Si le tableau de resultat est vide le compte n'existe pas encore on peut le créer
-		if(empty($data))
-		{
-            $sql = "UPDATE utilisateur SET Prenom = '". $prenom ."', Nom = '". $nom ."', Mail = '". $email ."', MotDePasse = '". $password ."', DateNaissance = '". $date. "' WHERE ID_user =". $ID_user. "";
-            //On effecte la requèt d'ajout, l'ID stincrémenté automatiquement
-            if(mysqli_query($db_handle, $sql)){
-            }
-            else{
-                echo"error";
-            }
-            
-            //On ouvre la session du nouvel utilisateur grâce a son ID
-            //header("Refresh: 0; url=Profil.php");
-            $connexion = true;
-            mysqli_close($db_handle);
-		}
-        //L'adresse est déjà utilisée 
-		else
-		{
-            header("Refresh: 0; url=CreerCompteErrone.html");
-
-		}
+        $sql = "UPDATE utilisateur SET Prenom = '". $prenom ."', Nom = '". $nom ."', Mail = '". $email ."', MotDePasse = '". $password ."', DateNaissance = '". $date. "' WHERE ID_user =". $ID_user. "";
+        //On effecte la requèt d'ajout, l'ID stincrémenté automatiquement
+        header("Refresh: 0; url=AfficherModifierProfil.php");
+        mysqli_close($db_handle);
 	}
 ?>

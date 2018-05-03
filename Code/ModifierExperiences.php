@@ -72,13 +72,13 @@
           <div class="card-body">
             <p class="card-text">Du : <?php echo $arrayDateArrive[$i]?> au <?php echo $arrayDateFin[$i]?></p>
             <p class="card-text">Commentaires : <?php echo $arrayCommentaires[$i]?></p>
-            <a href="#" class="btn btn-primary">Supprimer</a>
-            <a href="#" class="btn btn-primary">Modifier</a>
+            <a href="SupprimerExperience.php?ID=<?php echo $arrayID_Experience[$i]?>" class="btn btn-primary">Supprimer</a>
+            <a href="ModifierUneExperience.php?ID=<?php echo $arrayID_Experience[$i]?>" class="btn btn-primary">Modifier</a>
           </div>
         </div>
         <?php } ?>
-    <a href="#" class="btn btn-primary">Ajouter une Experience</a><br><br>
-    <button class="btn btn-lg btn-block btngr egn " type="submit">Valider</button>
+    <a href="AjouterExperience.html" class="btn btn-primary">Ajouter une Experience</a><br><br>
+    <a class="btn btn-lg btn-block btngr egn " href="AfficherModifierProfil.php">Retour</a>
     <p class="mt-5 mb-3 text-muted">&copy; 2017-2018</p>
     </form>
       

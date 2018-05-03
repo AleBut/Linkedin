@@ -108,11 +108,12 @@
         <br>
       <input type="date" name="date" placeholder="jj/mm/aaaa" value="<?php echo $date?>" style="text-align : right;">
         <br> <br>
-        <div>
-            <a class="nav-link btn-secondary" href="ModifierExperiences.php" >Modifier vos Experiences</a>
-            <a class="nav-link btn-secondary" href="ModifierFormations.php" >Modifier vos Formations</a> 
+        <div  style="inline">
+            <a class="btn btn-secondary" href="ModifierExperiences.php" >Modifier vos Experiences</a>
+            <br> <br>
+            <a class="btn btn-secondary" href="ModifierFormations.php" >Modifier vos Formations</a> 
         </div>
-        
+        <br> <br>
       <button class="btn btn-lg btn-block btngr egn " type="submit">Valider</button>
 
       <p class="mt-5 mb-3 text-muted">&copy; 2017-2018</p>
