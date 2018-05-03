@@ -23,6 +23,7 @@
 	if($db_found)
 	{
         $sql = "UPDATE utilisateur SET Prenom = '". $prenom ."', Nom = '". $nom ."', Mail = '". $email ."', MotDePasse = '". $password ."', DateNaissance = '". $date. "' WHERE ID_user =". $ID_user. "";
+        mysqli_query($db_handle, $sql);
         //On effecte la requèt d'ajout, l'ID stincrémenté automatiquement
         header("Refresh: 0; url=AfficherModifierProfil.php");
         mysqli_close($db_handle);

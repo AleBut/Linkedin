@@ -62,7 +62,7 @@
     <link href="signin.css" rel="stylesheet">
   </head>
 
-  <body class="text-center" id="bckg">
+  <body class="text-center">
     <form class="form-signin" action="ModifierExperiences.php" method="post">
       <h1 class="h3 mb-3 font-weight-normal">Modifier vos Experiences</h1>
          

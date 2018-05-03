@@ -90,7 +90,7 @@
     <link href="signin.css" rel="stylesheet">
   </head>
 
-  <body class="text-center" id="bckg">
+  <body class="text-center">
     <form class="form-signin" action="ModifierProfil.php" method="post">
       <img class="mb-4" src="https://getbootstrap.com/assets/brand/bootstrap-solid.svg" alt="" width="72" height="72">
       <h1 class="h3 mb-3 font-weight-normal">Modifier vos informations</h1>
@@ -113,7 +113,7 @@
             <br> <br>
             <a class="btn btn-secondary" href="ModifierFormations.php" >Modifier vos Formations</a> 
         </div>
-        <br> <br>
+        <br>
       <button class="btn btn-lg btn-block btngr egn " type="submit">Valider</button>
 
       <p class="mt-5 mb-3 text-muted">&copy; 2017-2018</p>

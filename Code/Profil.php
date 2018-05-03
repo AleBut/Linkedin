@@ -151,7 +151,8 @@
         </div>
 
         <div class = "boutonsp">
-          <button class="btn btn-lg  btn-block btngr egn " type="submit">Modifier Profil</button>
+          <a href="AfficherModifierProfil.php"><button class="btn btn-lg  btn-block btngr egn " type="submit">Modifier Profil</button></a>
+            <br>
           <button class="btn btn-lg  btn-block btngr  " type="submit">Photos</button>
         </div>
         
