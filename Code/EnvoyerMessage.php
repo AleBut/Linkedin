@@ -6,6 +6,8 @@
   // Récupérer les prénoms du correspondant
   $Prenom_destinataire = "";
   $Prenom_utilisateur = "";
+  $Photo_utilisateur = "";
+  $Photo_destinataire = "";
 
   // Récupérer l'ID du destinataire du message
   if($_POST["destinataire"])
@@ -60,6 +62,28 @@
 
     // On récupère Prenom et Nom pour le profil
     $Prenom_destinataire = $data['Prenom'];
+      
+      
+      
+      
+      // Requete table utilisateur
+    $sql = "SELECT PhotoProfil FROM description WHERE ID_user = " . $ID_user;
+    $result = mysqli_query($db_handle, $sql);
+    $data = mysqli_fetch_assoc($result);
+
+    // On récupère le prenom de l'utilisateur
+    $Photo_utilisateur = $data['PhotoProfil'];
+
+    // Requete table utilisateur
+    $sql = "SELECT PhotoProfil FROM description WHERE ID_user = " .  $ID_destinataire;
+    $result = mysqli_query($db_handle, $sql);
+    $data = mysqli_fetch_assoc($result);
+
+    // On récupère Prenom et Nom pour le profil
+    $Photo_destinataire = $data['PhotoProfil'];
+      
+      
+      
 
 
     // Requete historique des messages entre l'utilisateur et le destinateur
@@ -75,14 +99,29 @@
 
       array_push($array_Messages, $data['Message']);
     }
-
+   echo '<div class="boxsuggestion">
+        <h1 style="text-align: center; color:cadetblue"> Votre Conversation </h1>
+        <img src='.$Photo_destinataire.' height="50" width="50" class="Afficher" />
+        <h3 class="texte"> '.$Prenom_destinataire.'</h3>
+        </div>
+        <br>';
+      echo '<div class="conversation">';
     // Affichage de la conversation
-    echo "-----------------------<br>";
     for($i = 0; $i < sizeof($array_Messages); $i++)
     {
-      echo "[" . $array_Expediteurs[$i] . "] : " . $array_Messages[$i] . "<br>";
+        if($array_Expediteurs[$i]==$Prenom_utilisateur){
+      echo '<div class="msgmoi">
+            <img src='.$Photo_utilisateur.' height="50" width="50" class="Afficher" />
+             <p class="texte"> '.$array_Messages[$i].'</p>
+            </div>';
+        }
+        if($array_Expediteurs[$i]==$Prenom_destinataire){
+            echo '<div class="msgtoi">
+            <img src='.$Photo_destinataire.' height="50" width="50" class="Afficherb" />
+             <p class="texteb"> '.$array_Messages[$i].'</p>
+            </div>';
+        }
     }
-    echo "-----------------------<br>";
   }
    mysqli_close($db_handle);
 ?>
@@ -102,7 +141,7 @@
       <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" rel="stylesheet">
 
     <!-- Custom styles for this template -->
-    <link href="EnvoyerMessage.css" rel="stylesheet">
+    <link href="TestMessage.css" rel="stylesheet">
   </head>
 
   <body>
@@ -157,14 +196,14 @@
     <main role="main" class="container">
       <div class="starter-template">
           <form method="POST" action="EnvoyerMessage.php">
-            <table>
-          <tr>
+            <table style="float : left; margin-left : 15%;">
+          <tr >
             <td><input type="hidden" name="destinataire"></td> <!-- Grosse douille DEMANDER EXPLICATION -->
             <td>Chat: </td>
-            <td><input type="text" name="message"></td>
+            <td><input type="text" name="message" class="form-control" ></td>
           </tr>
         </table>
-        <input type="submit" name="Envoyer=" value="Envoyer" >
+        <input type="submit" name="Envoyer=" value="Envoyer" class="btn btngr  " style="float : left;">
       </form>
       </div>
     </main><!-- /.container -->
