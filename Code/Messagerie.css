@@ -6,6 +6,42 @@ body {
   text-align: center;
 }
 
+.boxsuggestion{
+    margin-right: 15%;
+    margin-left: 15%;
+    background-color: aliceblue;
+    border-radius: 10%;
+    padding-bottom: 25px;
+}
+
+.Afficher{
+    margin-left: 35%;
+    display: inline;
+    float : left;
+    margin-right: 5px;
+    border-radius: 50%;
+
+}
+
+.texte{
+    float: left;
+    padding-left: 10px;
+    padding-top: 10px;
+    margin-right: 10px;
+}
+.boutona{
+    margin-top: 4px;
+}
+.btngr {
+    background-color :cornflowerblue;
+    color : white;
+    border-color: cornflowerblue;    
+}
+.btngr:hover {
+    cursor:auto;
+    background-color:cadetblue;
+}
+
 
 .navbar {
 	background-color:#283E4A;

@@ -116,9 +116,8 @@
 
       array_push($arrayPrenomNom, $data['Prenom'] . " " . $data['Nom']);
     }
-  }
 
-  // On récupère leur photo de profil
+    // On récupère leur photo de profil
     foreach ($arrayID_amis as $value) 
     {
       $sql = "SELECT * FROM description WHERE ID_user = " . $value;
@@ -130,6 +129,7 @@
       else
         array_push($arrayPhotoProfilAmis,"imageProfilDefault.jpg");
     }
+  } 
 
   mysqli_close($db_handle);
 
@@ -222,7 +222,8 @@
        <?php for($i=0; $i<sizeof($arrayID_amis); $i++) { ?>
         <img src=<?php echo $arrayPhotoProfilAmis[$i] ?> height="50" width="50"  class="Afficher"/>
         <p class="texte"><?php echo $arrayPrenomNom[$i] ?></p>
-        <a href="VoirProfil.php?ID=<?php echo $arrayID_amis[$i] ?>"><button class="boutona btn btngr  "> Voir le profil</button></a>
+        <a href="VoirProfil.php?ID=<?php echo $arrayID_amis[$i] ?>"><button class="boutona btn btngr  ">Voir le profil</button></a>
+        <a href="SupprimerConnexion.php?ID=<?php echo $arrayID_amis[$i] ?>"><button class="boutona btn btngr  ">Supprimer</button></a>
         <br><br>
       <?php } ?>
     </div>

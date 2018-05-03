@@ -10,15 +10,8 @@
   $Photo_destinataire = "";
 
   // Récupérer l'ID du destinataire du message
-  if($_POST["destinataire"])
-  {
-    $ID_destinataire = $_POST["destinataire"];
-    $_SESSION['ID_destinataire'] = $ID_destinataire;
-  }
-  else
-    $ID_destinataire = $_SESSION['ID_destinataire'];
+  $ID_destinataire = isset($_GET["ID"])? $_GET["ID"]: "";
     
-
   // Récupération du potentiel message envoyé avant le rechargement de la page
   $message = isset($_POST["message"])? $_POST["message"]: "";
 
@@ -196,10 +189,9 @@
 
     <main role="main" class="container">
       <div class="starter-template">
-          <form method="POST" action="EnvoyerMessage.php">
+          <form method="POST" action="EnvoyerMessage.php?ID=<?php echo $ID_destinataire ?>">
             <table style="float : left; margin-left : 15%;">
-          <tr >
-            <td><input type="hidden" name="destinataire"></td> <!-- Grosse douille DEMANDER EXPLICATION -->
+          <tr>
             <td>Chat: </td>
             <td><input type="text" name="message" class="form-control" ></td>
           </tr>
