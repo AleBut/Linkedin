@@ -1,3 +1,38 @@
+<?php
+	// Sauvegarder l'ID
+	session_start();
+	$ID_user    = $_SESSION['ID_user'];
+
+	// Identifier BDD
+	$database = "linkedin";
+
+	// Connecter utilisateur à MYSQL
+	$db_handle = mysqli_connect('localhost', 'root', '');
+	// Connecter l'utilisateur à la BDD
+	$db_found = mysqli_select_db($db_handle, $database);
+
+	// Si BDD existe
+	if($db_found)
+	{ 
+        // On écrit la requête SQL
+		$sql = "SELECT * FROM formation WHERE ID_formation = " .$_GET['ID'];
+		// On envoit la requête
+        $result = mysqli_query($db_handle, $sql);
+        $data=mysqli_fetch_assoc($result);
+        if(empty($data)){
+           echo"error";
+            }
+        
+        else{
+            $TypeFormation = $data['TypeFormation'];
+            $NomEcole = $data['NomEcole'];
+            $DateArrive = $data['DateArrive'];
+            $DateFin = $data['DateFin'];
+            $Commentaires = $data['Commentaire'];
+            }
+	}
+?>
+           
 <!doctype html>
 <html lang="en">
   <head>
@@ -65,29 +100,25 @@
       </div>
     </nav>
       
-    <form class="form-signin" action="AjouterExperience.php" method="post">
+    <form class="form-signin" action="AppliquerModifFormation.php?ID=<?php echo $_GET['ID'] ?>" method="post">
       <img class="mb-4" src="https://getbootstrap.com/assets/brand/bootstrap-solid.svg" alt="" width="72" height="72">
-      <h1 class="h3 mb-3 font-weight-normal">Nouvelle Experience</h1>
-      <label for="inputText" class="sr-only">Type d'Experience</label>
-      <input type="text" class="form-control" placeholder="Type d'Experience" required autofocus name="TypeExperience">
+      <h1 class="h3 mb-3 font-weight-normal">Modifier votre Formation</h1>
+      <label for="inputText" class="sr-only">Type d'Formation</label>
+      <input type="text" class="form-control" placeholder="Type de Formation" value="<?php echo $TypeFormation?>" required autofocus name="TypeFormation">
         <br>
-      <label for="inputText" class="sr-only">Entreprise</label>
-      <input type="text" class="form-control" placeholder="Entreprise" required autofocus name="Entreprise">
+      <label for="inputText" class="sr-only">NomEcole</label>
+      <input type="text" class="form-control" placeholder="Nom de l'Ecole" value="<?php echo $NomEcole?>" required autofocus name="NomEcole">
         <br>
-    <label for="inputText" class="sr-only">Localisation</label>
-      <input type="text" class="form-control" placeholder="Localisation" required autofocus name="Localisation">
-        <br>
-      <input type="date" name="DateArrive" placeholder="Date d'arrivee" style="text-align : right;">
+      <input type="date" name="DateArrive" placeholder="Date d'arrivee" value="<?php echo $DateArrive?>" style="text-align : right;">
         <br><br>
-      <input type="date" name= "DateFin" placeholder="Date de fin" style="text-align : right;">
+      <input type="date" name= "DateFin" placeholder="Date de fin" value="<?php echo $DateFin?>" style="text-align : right;">
         <br><br>
       <label for="inputText" class="sr-only">Commentaires</label>
-      <input type="text" class="form-control" placeholder="Commentaires" required autofocus name="Commentaires">
+      <input type="text" class="form-control" placeholder="Commentaires" value="<?php echo $Commentaires?>" required autofocus name="Commentaires">
         <br>
         
-      <button class="btn btn-lg btn-block btngr egn " type="submit">Valider</button>
-      <a class="btn btn-info btn-lg btn-block egn " href="ModifierExperiences.php">Retour</a>
-
+      <button class="btn btn-success btn-lg btn-block btngr egn " type="submit">Valider</button>
+      <a class="btn btn-info btn-lg btn-block egn " href="ModifierFormations.php">Retour</a>
 
       <p class="mt-5 mb-3 text-muted">&copy; 2017-2018</p>
     </form>

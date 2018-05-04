@@ -52,6 +52,53 @@
   </head>
 
   <body class="text-center" >
+
+    <nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top">
+
+      <!-- Bouton à gauche -->
+      <a class="navbar-brand logo" href="Accueil.php" >ECE'IN</a>
+
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div class="collapse navbar-collapse" id="navbarsExampleDefault">
+        <form class="form-inline my-2 my-lg-0">
+          <input class="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search">
+          <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+        </form>
+
+        <ul class="navbar-nav mr-auto -brand BarBoutons">
+          <li class="nav-item -brand bouton">
+            <a class="nav-link" href="Accueil.php">Accueil <span class="sr-only">(current)</span></a>
+          </li>
+            <!-- Bouton réseau -->
+          <li class="nav-item -brand bouton">
+            <a class="nav-link" href="Reseau.php">Réseau</a>
+          </li>
+          <!-- Bouton emplois -->
+          <li class="nav-item -brand bouton">
+            <a class="nav-link" href="Emplois.php">Emplois</a>
+          </li>
+          <!-- Bouton messagerie -->
+          <li class="nav-item -brand bouton">
+            <a class="nav-link" href="Messagerie.php">Messagerie</a>
+          </li>
+          <!-- Bouton notifications -->
+          <li class="nav-item -brand bouton">
+            <a class="nav-link" href="Notifications.php">Notifications</a>
+          </li>
+          <!-- Bouton profil ACTIVE -->
+          <li class="nav-item active -brand bouton">
+            <a class="nav-link" href="Profil.php">Profil</a>
+          </li>
+          <!-- Bouton Deconnexion -->
+          <li class="nav-item -brand bouton">
+            <a class="nav-link" href="Deconnexion.php">Deconnexion</a>
+          </li>
+        </ul>
+      </div>
+    </nav>
     <form class="form-signin" action="AppliquerModifExperience.php?ID=<?php echo $_GET['ID'] ?>" method="post">
       <img class="mb-4" src="https://getbootstrap.com/assets/brand/bootstrap-solid.svg" alt="" width="72" height="72">
       <h1 class="h3 mb-3 font-weight-normal">Modifier votre Experience</h1>
@@ -73,6 +120,7 @@
         <br>
         
       <button class="btn btn-lg btn-block btngr egn " type="submit">Valider</button>
+      <a class="btn btn-info btn-lg btn-block egn " href="ModifierExperiences.php">Retour</a>
 
       <p class="mt-5 mb-3 text-muted">&copy; 2017-2018</p>
     </form>
