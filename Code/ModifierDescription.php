@@ -15,7 +15,7 @@
 	if($db_found)
 	{ 
         // On écrit la requête SQL
-		$sql = "SELECT * FROM experience WHERE ID_experience = " .$_GET['ID'];
+		$sql = "SELECT * FROM description WHERE ID_user = " .$ID_user;
 		// On envoit la requête
         $result = mysqli_query($db_handle, $sql);
         $data=mysqli_fetch_assoc($result);
@@ -24,12 +24,10 @@
             }
         
         else{
-            $TypeExperience = $data['TypeExperience'];
-            $Entreprise = $data['Entreprise'];
-            $DateArrive = $data['DateArrive'];
-            $DateFin = $data['DateFin'];
-            $Localisation = $data['Localisation'];
-            $Commentaires = $data['Commentaires'];
+            $Description = $data['Description'];
+            $CV = $data['CV'];
+            $PhotoProfil = $data['PhotoProfil'];
+            $ImageFond = $data['ImageFond'];
             }
 	}
 ?>
@@ -42,7 +40,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Experience</title>
+    <title>LinkedInECE</title>
 
     <!-- Bootstrap core CSS -->
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" rel="stylesheet">
@@ -52,10 +50,11 @@
   </head>
 
   <body class="text-center" >
-    <nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top">
+      
+        <nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top">
 
       <!-- Bouton à gauche -->
-      <a class="navbar-brand logo" href="Accueil.php" >ECE'IN</a>
+      <a class="navbar-brand logo" href="#" >ECE'IN</a>
 
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
@@ -68,16 +67,17 @@
         </form>
 
         <ul class="navbar-nav mr-auto -brand BarBoutons">
+          <!-- Bouton accueil -->
           <li class="nav-item -brand bouton">
             <a class="nav-link" href="Accueil.php">Accueil <span class="sr-only">(current)</span></a>
           </li>
             <!-- Bouton réseau -->
           <li class="nav-item -brand bouton">
-            <a class="nav-link" href="Reseau.php">Réseau</a>
+            <a class="nav-link" href="AfficherAmis.php">Réseau</a>
           </li>
           <!-- Bouton emplois -->
           <li class="nav-item -brand bouton">
-            <a class="nav-link" href="Emplois.php">Emplois</a>
+            <a class="nav-link" href="#">Emplois</a>
           </li>
           <!-- Bouton messagerie -->
           <li class="nav-item -brand bouton">
@@ -85,7 +85,7 @@
           </li>
           <!-- Bouton notifications -->
           <li class="nav-item -brand bouton">
-            <a class="nav-link" href="Notifications.php">Notifications</a>
+            <a class="nav-link" href="#">Notifications</a>
           </li>
           <!-- Bouton profil ACTIVE -->
           <li class="nav-item active -brand bouton">
@@ -98,33 +98,30 @@
         </ul>
       </div>
     </nav>
-    <form class="form-signin" action="AppliquerModifExperience.php?ID=<?php echo $_GET['ID'] ?>" method="post">
+      
+    <form class="form-signin" action="AppliquerModifDescription.php?ID=<?php echo $_GET['ID'] ?>" method="post">
       <img class="mb-4" src="https://getbootstrap.com/assets/brand/bootstrap-solid.svg" alt="" width="72" height="72">
-      <h1 class="h3 mb-3 font-weight-normal">Modifier votre Experience</h1>
-      <label for="inputText" class="sr-only">Type d'Experience</label>
-      <input type="text" class="form-control" placeholder="Type d'Experience" value="<?php echo $TypeExperience?>" required autofocus name="TypeExperience">
+      <h1 class="h3 mb-3 font-weight-normal">Modifier votre Description</h1>
+      <label for="inputText" class="sr-only">Description</label>
+      <input type="text" class="form-control" placeholder="Description" value="<?php echo $Description?>" required autofocus name="Description">
         <br>
-      <label for="inputText" class="sr-only">Entreprise</label>
-      <input type="text" class="form-control" placeholder="Entreprise" value="<?php echo $Entreprise?>" required autofocus name="Entreprise">
+    <label for="inputText" class="sr-only">CV</label>
+      <input type="text" class="form-control" placeholder="CV" value="<?php echo $CV?>" required autofocus name="CV">
         <br>
-    <label for="inputText" class="sr-only">Localisation</label>
-      <input type="text" class="form-control" placeholder="Localisation" value="<?php echo $Localisation?>" required autofocus name="Localisation">
-        <br><div style="display: inline;">
-          <p style="float: left;"> Date de début</p>
-      <input type="date" name="DateArrive" placeholder="Date d'arrivee" value="<?php echo $DateArrive?>" style="text-align : right;">
-      <br>
-    </div>
-        <br><div style="display: inline;">
-          <p style="float: left;"> Date de fin  </p>
-      <input type="date" name= "DateFin" placeholder="Date de fin" value="<?php echo $DateFin?>" style="text-align : right;">
-        </div>
-        <br><br>
-      <label for="inputText" class="sr-only">Commentaires</label>
-      <input type="text" class="form-control" placeholder="Commentaires" value="<?php echo $Commentaires?>" required autofocus name="Commentaires">
+      <label for="inputText" class="sr-only">PhotoProfil</label>
+      <input type="text" class="form-control" placeholder="Photo de Profil" value="<?php echo $PhotoProfil?>" required autofocus name="PhotoProfil">
         <br>
-        
+      <label for="inputText" class="sr-only">ImageFond</label>
+      <input type="text" class="form-control" placeholder="Image de Fond" value="<?php echo $ImageFond?>" required autofocus name="ImageFond">
+        <br>
+        <form action="Accueil.php" method="post" enctype="multipart/form-data">
+        <input type="file" name="fichier" />
+              <br><br>
+              <button type="submit">Connexion</button>
+          </form>
+        <br>
       <button class="btn btn-lg btn-block btngr egn " type="submit">Valider</button>
-      <a class="btn btn-info btn-lg btn-block egn " href="ModifierExperiences.php">Retour</a>
+      <a class="btn btn-info btn-lg btn-block egn " href="ModifierDescriptions.php">Retour</a>
 
       <p class="mt-5 mb-3 text-muted">&copy; 2017-2018</p>
     </form>

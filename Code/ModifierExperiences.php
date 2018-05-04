@@ -79,7 +79,6 @@
         </form>
 
         <ul class="navbar-nav mr-auto -brand BarBoutons">
-          <!-- Bouton accueil  -->
           <li class="nav-item -brand bouton">
             <a class="nav-link" href="Accueil.php">Accueil <span class="sr-only">(current)</span></a>
           </li>
@@ -110,9 +109,8 @@
         </ul>
       </div>
     </nav>
-
     <form class="form-signin" action="ModifierExperiences.php" method="post">
-      <h1 class="h3 mb-3 font-weight-normal">Modifier vos Experiences</h1>
+      <h1 class="h3 mb-3 font-weight-normal">Vos Experiences</h1>
          
         <?php for($i=0;$i<$cpt;$i++){ ?>
         <div class="card text-center text-white bg-secondary mb-3" style="width: 500px; margin-left: -100px">
@@ -126,7 +124,9 @@
         </div>
         <?php } ?>
     <a href="AjouterExperience.html" class="btn btn-primary">Ajouter une Experience</a><br><br>
-    <a class="btn btn-lg btn-block btngr egn " href="AfficherModifierProfil.php">Retour</a>
+    <a class="btn btn-info btn-lg btn-block egn " href="AfficherModifierProfil.php">Retour</a>
+    <p class="mt-5 mb-3 text-muted">&copy; 2017-2018</p>
+
     </form>
       
   </body>

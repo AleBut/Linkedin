@@ -95,7 +95,6 @@
 
       <!-- Bouton à gauche -->
       <a class="navbar-brand logo" href="Accueil.php" >ECE'IN</a>
-
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
@@ -138,7 +137,6 @@
         </ul>
       </div>
     </nav>
-
     <form class="form-signin" action="ModifierProfil.php" method="post">
       <img class="mb-4" src="https://getbootstrap.com/assets/brand/bootstrap-solid.svg" alt="" width="72" height="72">
       <h1 class="h3 mb-3 font-weight-normal">Modifier vos informations</h1>
@@ -156,13 +154,17 @@
         <br>
       <input type="date" name="date" placeholder="jj/mm/aaaa" value="<?php echo $date?>" style="text-align : right;">
         <br> <br>
-        <div  style="inline">
-            <a class="btn btn-secondary" href="ModifierExperiences.php" >Modifier vos Experiences</a>
-            <br> <br>
-            <a class="btn btn-secondary" href="ModifierFormations.php" >Modifier vos Formations</a> 
+        <div>
+            <a class="btn btn-primary btn-sm btn-block" href="ModifierDescription.php">Modifier votre Description</a>
+            <br>
+            <a class="btn btn-primary btn-sm btn-block" href="ModifierExperiences.php">Modifier vos Experiences</a>
+            <br>
+            <a class="btn btn-primary btn-sm btn-block" href="ModifierFormations.php" >Modifier vos Formations</a> 
         </div>
         <br>
       <button class="btn btn-lg btn-block btngr egn " type="submit">Valider</button>
+      <a class="btn btn-info btn-lg btn-block egn " href="Profil.php">Retour</a>
+
 
     </form>
       
