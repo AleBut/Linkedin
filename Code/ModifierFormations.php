@@ -60,7 +60,7 @@
     <link href="signin.css" rel="stylesheet">
   </head>
 
-  <body class="text-center" id="bckg">
+  <body class="text-center">
   <body class="text-center">
     <nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top">
 
