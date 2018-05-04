@@ -1,0 +1,49 @@
+body {
+  padding-top: 5rem;
+}
+
+
+.texte{
+    
+    padding-left: 10px;
+    padding-top: 10px;
+    margin-right: 10px;
+}
+.navbar {
+	background-color:#283E4A;
+  	text-align: center;
+}
+.logo {
+	margin-left: 50px;
+	color:#2CA94E;
+}
+.barBoutons {
+	margin-left: 100px;
+}
+.bouton {
+	margin-right: 10px;
+}
+.btngr {
+    background-color: cornflowerblue;
+}
+
+.btngr:hover {
+    cursor:auto;
+    background-color:cadetblue;
+}
+.boxsuggestion{
+    text-align: center;
+    margin-right: 15%;
+    margin-left: 15%;
+    background-color: aliceblue;
+    border-radius: 10%;
+    padding-bottom: 25px;
+}
+.boxpost{
+   
+    margin-right: 15%;
+    margin-left: 15%;
+    background-color: aliceblue;
+    border-radius: 10%;
+    padding-bottom: 25px;
+}

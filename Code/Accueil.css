@@ -20,4 +20,6 @@ body {
 .bouton {
 	margin-right: 10px;
 }
-
+.btngr {
+    background-color: cadetblue;
+}

@@ -3,7 +3,7 @@
 	session_start();
 	$ID_user = $_SESSION['ID_user'];
 
-  $ID_invite = isset($_GET["ID"])? $_GET["ID"]: "";
+  $ID_supprime = isset($_GET["ID"])? $_GET["ID"]: "";
 
   // Identifier BDD
   $database = "linkedin";
@@ -16,9 +16,11 @@
   // Si BDD existe
   if($db_found)
   {
-    $sql = "INSERT INTO demandeConnexion (ID_expediteur, ID_destinataire) VALUES (" . $ID_user . ", " . $ID_invite . ")";
+    $sql = "DELETE FROM connexion WHERE ( ID_user_1 = '" . $ID_user . "' AND ID_user_2 = '" . $ID_supprime . "') OR ( ID_user_1 = '" . $ID_supprime . "' AND ID_user_2 = '" . $ID_user . "')";
+
     mysqli_query($db_handle, $sql);
   }
   mysqli_close($db_handle);
+
   header("Refresh: 0; url=Reseau.php");
 ?>

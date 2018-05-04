@@ -10,15 +10,8 @@
   $Photo_destinataire = "";
 
   // Récupérer l'ID du destinataire du message
-  if($_POST["destinataire"])
-  {
-    $ID_destinataire = $_POST["destinataire"];
-    $_SESSION['ID_destinataire'] = $ID_destinataire;
-  }
-  else
-    $ID_destinataire = $_SESSION['ID_destinataire'];
+  $ID_destinataire = isset($_GET["ID"])? $_GET["ID"]: "";
     
-
   // Récupération du potentiel message envoyé avant le rechargement de la page
   $message = isset($_POST["message"])? $_POST["message"]: "";
 
@@ -149,7 +142,7 @@
     <nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top">
 
       <!-- Bouton à gauche -->
-      <a class="navbar-brand logo" href="#" >ECE'IN</a>
+      <a class="navbar-brand logo" href="Accueil.php" >ECE'IN</a>
 
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
@@ -162,17 +155,17 @@
         </form>
 
         <ul class="navbar-nav mr-auto -brand BarBoutons">
-          <!-- Bouton accueil -->
+          <!-- Bouton accueil  -->
           <li class="nav-item -brand bouton">
             <a class="nav-link" href="Accueil.php">Accueil <span class="sr-only">(current)</span></a>
           </li>
             <!-- Bouton réseau -->
           <li class="nav-item -brand bouton">
-            <a class="nav-link" href="AfficherAmis.php">Réseau</a>
+            <a class="nav-link" href="Reseau.php">Réseau</a>
           </li>
           <!-- Bouton emplois -->
           <li class="nav-item -brand bouton">
-            <a class="nav-link" href="#">Emplois</a>
+            <a class="nav-link" href="Emplois.php">Emplois</a>
           </li>
           <!-- Bouton messagerie ACTIVE -->
           <li class="nav-item active -brand bouton">
@@ -180,7 +173,7 @@
           </li>
           <!-- Bouton notifications -->
           <li class="nav-item -brand bouton">
-            <a class="nav-link" href="#">Notifications</a>
+            <a class="nav-link" href="Notifications.php">Notifications</a>
           </li>
           <!-- Bouton profil -->
           <li class="nav-item -brand bouton">
@@ -196,10 +189,9 @@
 
     <main role="main" class="container">
       <div class="starter-template">
-          <form method="POST" action="EnvoyerMessage.php">
+          <form method="POST" action="EnvoyerMessage.php?ID=<?php echo $ID_destinataire ?>">
             <table style="float : left; margin-left : 15%;">
-          <tr >
-            <td><input type="hidden" name="destinataire"></td> <!-- Grosse douille DEMANDER EXPLICATION -->
+          <tr>
             <td>Chat: </td>
             <td><input type="text" name="message" class="form-control" ></td>
           </tr>
