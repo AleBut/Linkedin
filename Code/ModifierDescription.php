@@ -13,66 +13,25 @@
 
 	// Si BDD existe
 	if($db_found)
-	{
-      // On écrit la requête SQL
-		$sql = "SELECT * FROM utilisateur WHERE ID_User = " .  $ID_user . "";
-
-		// On envoit la requête
-		$result = mysqli_query($db_handle, $sql);
-		$data = mysqli_fetch_assoc($result);
-
-		// Si le tableau de resultat est vide
-		if(empty($data))
-		{
-			header("Refresh: 0; url=LoginErrone.html");
-		}
-		else
-		{
-            $email 		= $data['Mail'];  // If then else
-            $nom        = $data['Nom'];
-            $prenom     = $data['Prenom'];
-            $password 	= $data['MotDePasse'];
-            $date       = $data['DateNaissance'];
-		}
-        
+	{ 
         // On écrit la requête SQL
-		$sql2 = "SELECT * FROM experience WHERE ID_User = " .  $ID_user . "";
-
+		$sql = "SELECT * FROM description WHERE ID_user = " .$ID_user;
 		// On envoit la requête
-		$result2 = mysqli_query($db_handle, $sql2);
-		$data2 = mysqli_fetch_assoc($result2);
-
-		// Si le tableau de resultat est vide
-		if(empty($data))
-		{
-			header("Refresh: 0; url=LoginErrone.html");
-		}
-		else
-		{
-            //$experiences[] = array($data2);
-            $experience = $data2['TypeExperience'];
-		} 
+        $result = mysqli_query($db_handle, $sql);
+        $data=mysqli_fetch_assoc($result);
+        if(empty($data)){
+           echo"error";
+            }
         
-        // On écrit la requête SQL
-		$sql3 = "SELECT * FROM formation WHERE ID_User = " .  $ID_user . "";
-
-		// On envoit la requête
-		$result3 = mysqli_query($db_handle, $sql3);
-		$data3 = mysqli_fetch_assoc($result3);
-
-		// Si le tableau de resultat est vide
-		if(empty($data))
-		{
-			header("Refresh: 0; url=LoginErrone.html");
-		}
-		else
-		{
-            
-		}
+        else{
+            $Description = $data['Description'];
+            $CV = $data['CV'];
+            $PhotoProfil = $data['PhotoProfil'];
+            $ImageFond = $data['ImageFond'];
+            }
 	}
 ?>
-
-<!--Source GetBootstrap-->
+           
 <!doctype html>
 <html lang="en">
   <head>
@@ -90,7 +49,8 @@
     <link href="signin.css" rel="stylesheet">
   </head>
 
-  <body class="text-center">
+  <body class="text-center" >
+      
         <nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top">
 
       <!-- Bouton à gauche -->
@@ -139,34 +99,29 @@
       </div>
     </nav>
       
-    <form class="form-signin" action="ModifierProfil.php" method="post">
+    <form class="form-signin" action="AppliquerModifDescription.php?ID=<?php echo $_GET['ID'] ?>" method="post">
       <img class="mb-4" src="https://getbootstrap.com/assets/brand/bootstrap-solid.svg" alt="" width="72" height="72">
-      <h1 class="h3 mb-3 font-weight-normal">Modifier vos informations</h1>
-      <label for="inputEmail" class="sr-only">Votre Adresse mail</label>
-      <input type="email" class="form-control" placeholder="Adresse Email" value="<?php echo $email?>" required autofocus name="email">
+      <h1 class="h3 mb-3 font-weight-normal">Modifier votre Description</h1>
+      <label for="inputText" class="sr-only">Description</label>
+      <input type="text" class="form-control" placeholder="Description" value="<?php echo $Description?>" required autofocus name="Description">
         <br>
-      <label for="inputText" class="sr-only">Votre Nom </label>
-      <input type="text" class="form-control" placeholder="Votre nom" value="<?php echo $nom?>" required autofocus name="nom">
+    <label for="inputText" class="sr-only">CV</label>
+      <input type="text" class="form-control" placeholder="CV" value="<?php echo $CV?>" required autofocus name="CV">
         <br>
-        <label for="inputText" class="sr-only">Votre Prénom </label>
-      <input type="text" class="form-control" placeholder="Votre Prénom" value="<?php echo $prenom?>" required autofocus name="prenom">
+      <label for="inputText" class="sr-only">PhotoProfil</label>
+      <input type="text" class="form-control" placeholder="Photo de Profil" value="<?php echo $PhotoProfil?>" required autofocus name="PhotoProfil">
         <br>
-      <label for="inputPassword" class="sr-only">Mot de Passe</label>
-      <input type="password" id="inputPassword" class="form-control" placeholder="Mot de Passe" value="<?php echo $password?>" required name="MDP">
+      <label for="inputText" class="sr-only">ImageFond</label>
+      <input type="text" class="form-control" placeholder="Image de Fond" value="<?php echo $ImageFond?>" required autofocus name="ImageFond">
         <br>
-      <input type="date" name="date" placeholder="jj/mm/aaaa" value="<?php echo $date?>" style="text-align : right;">
-        <br> <br>
-        <div>
-            <a class="btn btn-primary btn-sm btn-block" href="ModifierDescription.php">Modifier votre Description</a>
-            <br>
-            <a class="btn btn-primary btn-sm btn-block" href="ModifierExperiences.php">Modifier vos Experiences</a>
-            <br>
-            <a class="btn btn-primary btn-sm btn-block" href="ModifierFormations.php" >Modifier vos Formations</a> 
-        </div>
+        <form action="Accueil.php" method="post" enctype="multipart/form-data">
+        <input type="file" name="fichier" />
+              <br><br>
+              <button type="submit">Connexion</button>
+          </form>
         <br>
       <button class="btn btn-lg btn-block btngr egn " type="submit">Valider</button>
-      <a class="btn btn-info btn-lg btn-block egn " href="Profil.php">Retour</a>
-
+      <a class="btn btn-info btn-lg btn-block egn " href="ModifierDescriptions.php">Retour</a>
 
       <p class="mt-5 mb-3 text-muted">&copy; 2017-2018</p>
     </form>
