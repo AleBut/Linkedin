@@ -75,15 +75,15 @@
         for($f = 0; $f < sizeof($arrayID_amis); $f++){
             if($arrayID_amis[$f] == $array_Posteurs[$i]){
       echo '<div class="starter-template boxpost">
-            <img src='.$Photo_post.' height="50" width="50" class="Afficher" style="float : left; margin-right:10px; margin-top : 10px; margin-left : 5px;" />
+            <img src='.$Photo_post.' height="50" width="50" class="Afficher" style="float : left; margin-right:35px; margin-top : 20px; margin-left : 25px;" />
              <p class="texte" style="margin-top : 10px;"> '.$array_Post[$i].'</p>
             </div><br>';
             }
         }
         if($array_Posteurs[$i]==$ID_user){
-             echo '<div class="starter-template boxpost">
-            <img src='.$Photo_post.' height="50" width="50" class="Afficher" style="float : left; margin-right:10px; padding-top:10px; margin-left : 5px;" />
-             <p class="texte" style="margin-top:10px;"> '.$array_Post[$i].'</p>
+            echo '<div class="starter-template boxpost">
+            <img src='.$Photo_post.' height="50" width="50" class="Afficher" style="float : left; margin-right:35px; margin-top : 20px; margin-left : 25px;" />
+             <p class="texte" style="margin-top : 10px;"> '.$array_Post[$i].'</p>
             </div><br>';
         }
         }
@@ -116,15 +116,15 @@
     <nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top">
 
       <!-- Bouton à gauche -->
-      <a class="navbar-brand logo" href="Accueil.php" >ECE'IN</a>
+      <a class="navbar-brand logo" href="#" >ECE'IN</a>
 
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
 
       <div class="collapse navbar-collapse" id="navbarsExampleDefault">
-      	<form class="form-inline my-2 my-lg-0">
-          <input class="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search">
+      	<form class="form-inline my-2 my-lg-0" action="RechercheAmi.php" method="post">
+          <input class="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search" name="recherche" >
           <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
         </form>
 
@@ -135,7 +135,7 @@
           </li>
             <!-- Bouton réseau -->
           <li class="nav-item -brand bouton">
-            <a class="nav-link" href="Reseau.php">Réseau</a>
+            <a class="nav-link" href="AfficherAmis.php">Réseau</a>
           </li>
           <!-- Bouton emplois -->
           <li class="nav-item -brand bouton">

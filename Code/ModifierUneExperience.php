@@ -42,7 +42,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Experience</title>
+    <title>LinkedInECE</title>
 
     <!-- Bootstrap core CSS -->
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" rel="stylesheet">
@@ -52,6 +52,7 @@
   </head>
 
   <body class="text-center" >
+
     <nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top">
 
       <!-- Bouton à gauche -->
@@ -109,15 +110,10 @@
         <br>
     <label for="inputText" class="sr-only">Localisation</label>
       <input type="text" class="form-control" placeholder="Localisation" value="<?php echo $Localisation?>" required autofocus name="Localisation">
-        <br><div style="display: inline;">
-          <p style="float: left;"> Date de début</p>
+        <br>
       <input type="date" name="DateArrive" placeholder="Date d'arrivee" value="<?php echo $DateArrive?>" style="text-align : right;">
-      <br>
-    </div>
-        <br><div style="display: inline;">
-          <p style="float: left;"> Date de fin  </p>
+        <br><br>
       <input type="date" name= "DateFin" placeholder="Date de fin" value="<?php echo $DateFin?>" style="text-align : right;">
-        </div>
         <br><br>
       <label for="inputText" class="sr-only">Commentaires</label>
       <input type="text" class="form-control" placeholder="Commentaires" value="<?php echo $Commentaires?>" required autofocus name="Commentaires">

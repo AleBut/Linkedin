@@ -42,8 +42,7 @@
             <p style="margin-left: 60%; float: left; text-align: right"> Lieu : '.$arrayLocalisation[$i].' </p>
             <br><br>
         <p> Description de l\'offre : '.$arrayDescription[$i].'</p>
-            <a href="AccepterEmploi.php?ID='. $arrayIDJob[$i] . '"><button class="boutona btn btngr  " style="margin-left: 40%;">Accepter l\'offre</button></a>
-            <br><br>
+            <button class="boutona btn btngr  " style="margin-left: 40%;">Accepter l\'offre</button><br><br>
         </div><br><br>';
 	    }
 	}
@@ -72,26 +71,26 @@
     <nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top">
 
       <!-- Bouton à gauche -->
-      <a class="navbar-brand logo" href="Accueil.php" >ECE'IN</a>
+      <a class="navbar-brand logo" href="#" >ECE'IN</a>
 
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
 
       <div class="collapse navbar-collapse" id="navbarsExampleDefault">
-        <form class="form-inline my-2 my-lg-0">
-          <input class="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search">
+      	<form class="form-inline my-2 my-lg-0" action="RechercheAmi.php" method="post">
+          <input class="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search" name="recherche" >
           <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
         </form>
 
         <ul class="navbar-nav mr-auto -brand BarBoutons">
-          <!-- Bouton accueil  -->
+          <!-- Bouton accueil -->
           <li class="nav-item -brand bouton">
             <a class="nav-link" href="Accueil.php">Accueil <span class="sr-only">(current)</span></a>
           </li>
             <!-- Bouton réseau -->
           <li class="nav-item -brand bouton">
-            <a class="nav-link" href="Reseau.php">Réseau</a>
+            <a class="nav-link" href="AfficherAmis.php">Réseau</a>
           </li>
           <!-- Bouton emplois ACTIVE -->
           <li class="nav-item active -brand bouton">

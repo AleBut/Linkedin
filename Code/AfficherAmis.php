@@ -116,9 +116,8 @@
 
       array_push($arrayPrenomNom, $data['Prenom'] . " " . $data['Nom']);
     }
-  }
 
-  // On récupère leur photo de profil
+    // On récupère leur photo de profil
     foreach ($arrayID_amis as $value) 
     {
       $sql = "SELECT * FROM description WHERE ID_user = " . $value;
@@ -130,6 +129,7 @@
       else
         array_push($arrayPhotoProfilAmis,"imageProfilDefault.jpg");
     }
+  } 
 
   mysqli_close($db_handle);
 
@@ -165,8 +165,8 @@
       </button>
 
       <div class="collapse navbar-collapse" id="navbarsExampleDefault">
-        <form class="form-inline my-2 my-lg-0">
-          <input class="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search">
+        <form class="form-inline my-2 my-lg-0" action="RechercheAmi.php" method="post">
+          <input class="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search" name="recherche" >
           <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
         </form>
 
@@ -189,7 +189,7 @@
           </li>
           <!-- Bouton notifications -->
           <li class="nav-item -brand bouton">
-            <a class="nav-link" href="#">Notifications</a>
+            <a class="nav-link" href="Notifications.php">Notifications</a>
           </li>
           <!-- Bouton profil -->
           <li class="nav-item -brand bouton">
@@ -222,7 +222,8 @@
        <?php for($i=0; $i<sizeof($arrayID_amis); $i++) { ?>
         <img src=<?php echo $arrayPhotoProfilAmis[$i] ?> height="50" width="50"  class="Afficher"/>
         <p class="texte"><?php echo $arrayPrenomNom[$i] ?></p>
-        <a href="VoirProfil.php?ID=<?php echo $arrayID_amis[$i] ?>"><button class="boutona btn btngr  "> Voir le profil</button></a>
+        <a href="VoirProfil.php?ID=<?php echo $arrayID_amis[$i] ?>"><button class="boutona btn btngr  ">Voir le profil</button></a>
+        <a href="SupprimerConnexion.php?ID=<?php echo $arrayID_amis[$i] ?>"><button class="boutona btn btngr  ">Supprimer</button></a>
         <br><br>
       <?php } ?>
     </div>

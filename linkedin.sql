@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1:3306
--- Généré le :  jeu. 03 mai 2018 à 15:11
+-- Généré le :  ven. 04 mai 2018 à 10:43
 -- Version du serveur :  5.7.19
 -- Version de PHP :  5.6.31
 
@@ -84,7 +84,7 @@ CREATE TABLE IF NOT EXISTS `connexion` (
   PRIMARY KEY (`ID_connexion`),
   KEY `ID_user_1` (`ID_user_1`),
   KEY `ID_user_2` (`ID_user_2`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=latin1;
 
 --
 -- Déchargement des données de la table `connexion`
@@ -93,7 +93,8 @@ CREATE TABLE IF NOT EXISTS `connexion` (
 INSERT INTO `connexion` (`ID_connexion`, `ID_user_1`, `ID_user_2`, `DateConnexion`) VALUES
 (2, 2, 3, '2018-04-29 22:00:00'),
 (4, 1, 4, '2018-05-03 14:59:40'),
-(5, 2, 1, '2018-05-03 15:07:36');
+(5, 2, 1, '2018-05-03 15:07:36'),
+(6, 4, 3, '2018-05-04 10:30:43');
 
 -- --------------------------------------------------------
 
@@ -110,7 +111,7 @@ CREATE TABLE IF NOT EXISTS `demandeconnexion` (
   PRIMARY KEY (`ID_demandeConnexion`),
   KEY `ID_destinataire` (`ID_destinataire`),
   KEY `ID_expediteur` (`ID_expediteur`)
-) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -182,14 +183,15 @@ CREATE TABLE IF NOT EXISTS `experience` (
   `Commentaires` text NOT NULL,
   PRIMARY KEY (`ID_experience`),
   KEY `ID_user` (`ID_user`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
 
 --
 -- Déchargement des données de la table `experience`
 --
 
 INSERT INTO `experience` (`ID_experience`, `ID_user`, `TypeExperience`, `Entreprise`, `DateArrive`, `DateFin`, `Localisation`, `Commentaires`) VALUES
-(1, 1, 'Branlette', 'L\'epicerie d\'Ahmed', '2018-04-11', '2018-04-12', 'La téci', 'Wallah');
+(1, 1, 'Branlette', 'L epicerie d Ahmed', '2018-04-11', '2018-04-12', 'La teci', 'Wallah'),
+(4, 4, 'CDD', 'Altel', '2018-05-01', '2018-05-26', 'Paris', 'Assistant');
 
 -- --------------------------------------------------------
 
@@ -208,14 +210,15 @@ CREATE TABLE IF NOT EXISTS `formation` (
   `Commentaire` text NOT NULL,
   PRIMARY KEY (`ID_formation`),
   KEY `ID_user` (`ID_user`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
 
 --
 -- Déchargement des données de la table `formation`
 --
 
 INSERT INTO `formation` (`ID_formation`, `ID_user`, `NomEcole`, `TypeFormation`, `DateArrive`, `DateFin`, `Commentaire`) VALUES
-(1, 1, 'ECE Paris', 'Formation école ingénieur', '2015-04-30', '2020-04-30', 'Ecole post bac formation généraliste');
+(1, 1, 'ECE Paris', 'Formation école ingénieur', '2015-04-30', '2020-04-30', 'Ecole post bac formation généraliste'),
+(2, 4, 'ECE paris', 'IngÃ©nierie', '2018-04-30', '2018-05-02', '1er de promo');
 
 -- --------------------------------------------------------
 
@@ -345,15 +348,16 @@ CREATE TABLE IF NOT EXISTS `post` (
   `ModeVisibilite` int(3) NOT NULL,
   PRIMARY KEY (`ID_post`),
   KEY `ID_user` (`ID_user`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=20 DEFAULT CHARSET=latin1;
 
 --
 -- Déchargement des données de la table `post`
 --
 
 INSERT INTO `post` (`ID_post`, `ID_user`, `Contenu`, `DatePublication`, `Lieu`, `ModeVisibilite`) VALUES
-(1, 2, 'Salut les filles, nouveau Vlog beaute!', '2018-04-30 00:00:00', 'Saint-Cloud', 0),
-(2, 3, 'Je regale chez moi', '2018-05-02 00:00:00', 'Chez moi', 0);
+(5, 1, 'Salut', '2018-05-04 11:54:13', 'Paris', 0),
+(16, 2, '<div style=\"width : 400px;\"><p style=\"text-align : center;\">Vous en pensez quoi de mon nouveau panda?</p><img src=PostPanda.jpg alt=\"\" height=\"200\" width\"220\"/></div>', '2018-05-04 12:08:00', 'Paris', 0),
+(17, 3, '<div style=\"width : 400px;\"><p style=\"text-align : center;\">Nouvelle photo de profil</p><img src=imageProfilPierre.jpg alt=\"\" height=\"200\" width\"220\"/></div>', '2018-05-04 12:09:27', 'Paris', 0);
 
 -- --------------------------------------------------------
 

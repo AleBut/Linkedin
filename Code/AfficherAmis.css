@@ -38,3 +38,18 @@ body {
     cursor:auto;
     background-color:cadetblue;
 }
+
+.navbar {
+    background-color:#283E4A;
+    text-align: center;
+}
+.logo {
+    margin-left: 50px;
+    color:#2CA94E;
+}
+.barBoutons {
+    margin-left: 100px;
+}
+.bouton {
+    margin-right: 10px;
+}

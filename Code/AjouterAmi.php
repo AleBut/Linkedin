@@ -20,5 +20,5 @@
     mysqli_query($db_handle, $sql);
   }
   mysqli_close($db_handle);
-  header("Refresh: 0; url=Reseau.php");
+  header("Refresh: 0; url=AfficherAmis.php");
 ?>
