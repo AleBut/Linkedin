@@ -111,7 +111,7 @@
           </li>
           <!-- Bouton emplois -->
           <li class="nav-item -brand bouton">
-            <a class="nav-link" href="#">Emplois</a>
+            <a class="nav-link" href="Emplois.php">Emplois</a>
           </li>
           <!-- Bouton messagerie -->
           <li class="nav-item -brand bouton">
@@ -119,7 +119,7 @@
           </li>
           <!-- Bouton notifications -->
           <li class="nav-item -brand bouton">
-            <a class="nav-link" href="#">Notifications</a>
+            <a class="nav-link" href="Notifications.php">Notifications</a>
           </li>
           <!-- Bouton profil ACTIVE -->
           <li class="nav-item active -brand bouton">

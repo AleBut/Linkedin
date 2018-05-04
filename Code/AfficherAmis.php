@@ -189,7 +189,7 @@
           </li>
           <!-- Bouton notifications -->
           <li class="nav-item -brand bouton">
-            <a class="nav-link" href="#">Notifications</a>
+            <a class="nav-link" href="Notifications.php">Notifications</a>
           </li>
           <!-- Bouton profil -->
           <li class="nav-item -brand bouton">

@@ -92,17 +92,17 @@
           <li class="nav-item -brand bouton">
             <a class="nav-link" href="AfficherAmis.php">Réseau</a>
           </li>
-          <!-- Bouton emplois -->
-          <li class="nav-item -brand bouton">
-            <a class="nav-link" href="#">Emplois</a>
-          </li>
-          <!-- Bouton messagerie ACTIVE -->
+          <!-- Bouton emplois ACTIVE -->
           <li class="nav-item active -brand bouton">
+            <a class="nav-link" href="Emplois.php">Emplois</a>
+          </li>
+          <!-- Bouton messagerie -->
+          <li class="nav-item -brand bouton">
             <a class="nav-link" href="Messagerie.php">Messagerie</a>
           </li>
           <!-- Bouton notifications -->
           <li class="nav-item -brand bouton">
-            <a class="nav-link" href="#">Notifications</a>
+            <a class="nav-link" href="Notifications.php">Notifications</a>
           </li>
           <!-- Bouton profil -->
           <li class="nav-item -brand bouton">

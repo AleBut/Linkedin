@@ -75,15 +75,15 @@
         for($f = 0; $f < sizeof($arrayID_amis); $f++){
             if($arrayID_amis[$f] == $array_Posteurs[$i]){
       echo '<div class="starter-template boxpost">
-            <img src='.$Photo_post.' height="50" width="50" class="Afficher" style="float : left; margin-right:10px; margin-top : 10px; margin-left : 5px;" />
+            <img src='.$Photo_post.' height="50" width="50" class="Afficher" style="float : left; margin-right:35px; margin-top : 20px; margin-left : 25px;" />
              <p class="texte" style="margin-top : 10px;"> '.$array_Post[$i].'</p>
             </div><br>';
             }
         }
         if($array_Posteurs[$i]==$ID_user){
-             echo '<div class="starter-template boxpost">
-            <img src='.$Photo_post.' height="50" width="50" class="Afficher" style="float : left; margin-right:10px; padding-top:10px; margin-left : 5px;" />
-             <p class="texte" style="margin-top:10px;"> '.$array_Post[$i].'</p>
+            echo '<div class="starter-template boxpost">
+            <img src='.$Photo_post.' height="50" width="50" class="Afficher" style="float : left; margin-right:35px; margin-top : 20px; margin-left : 25px;" />
+             <p class="texte" style="margin-top : 10px;"> '.$array_Post[$i].'</p>
             </div><br>';
         }
         }
