@@ -99,29 +99,36 @@
       </div>
     </nav>
       
-    <form class="form-signin" action="AppliquerModifDescription.php?ID=<?php echo $_GET['ID'] ?>" method="post">
+    <form class="form-signin form-signin2" action="AppliquerModifDescription.php" method="post" enctype="multipart/form-data">
       <img class="mb-4" src="https://getbootstrap.com/assets/brand/bootstrap-solid.svg" alt="" width="72" height="72">
       <h1 class="h3 mb-3 font-weight-normal">Modifier votre Description</h1>
       <label for="inputText" class="sr-only">Description</label>
-      <input type="text" class="form-control" placeholder="Description" value="<?php echo $Description?>" required autofocus name="Description">
+      <textarea type="text" rows="5" class="form-control" placeholder="Nouvelle description" name="Description"></textarea>
         <br>
-    <label for="inputText" class="sr-only">CV</label>
-      <input type="text" class="form-control" placeholder="CV" value="<?php echo $CV?>" required autofocus name="CV">
-        <br>
-      <label for="inputText" class="sr-only">PhotoProfil</label>
-      <input type="text" class="form-control" placeholder="Photo de Profil" value="<?php echo $PhotoProfil?>" required autofocus name="PhotoProfil">
-        <br>
-      <label for="inputText" class="sr-only">ImageFond</label>
-      <input type="text" class="form-control" placeholder="Image de Fond" value="<?php echo $ImageFond?>" required autofocus name="ImageFond">
-        <br>
-        <form action="Accueil.php" method="post" enctype="multipart/form-data">
-        <input type="file" name="fichier" />
-              <br><br>
-              <button type="submit">Connexion</button>
-          </form>
-        <br>
-      <button class="btn btn-lg btn-block btngr egn " type="submit">Valider</button>
-      <a class="btn btn-info btn-lg btn-block egn " href="ModifierDescriptions.php">Retour</a>
+        
+        <div class="card text-center text-white bg-secondary mb-3" style="max-width: 18rem;">
+          <div class="card-header">Curriculum Vitae :</div>
+          <div class="card-body">
+            <input type="file" name="CV"/>
+          </div>
+        </div>
+        
+        <div class="card text-center text-white bg-secondary mb-3" style="max-width: 18rem;">
+          <div class="card-header">Photo de profil :</div>
+          <div class="card-body">
+            <input type="file" name="PhotoProfil"/>
+          </div>
+        </div>
+        
+        <div class="card text-center text-white bg-secondary mb-3" style="max-width: 18rem;">
+          <div class="card-header">Image de fond :</div>
+          <div class="card-body">
+            <input type="file" name="ImageFond"/>
+          </div>
+        </div>
+        
+      <button class="btn btn-lg btn-block btngr egn " type="submit" >Valider</button>
+      <a class="btn btn-info btn-lg btn-block egn " href="AfficherModifierProfil.php">Retour</a>
 
       <p class="mt-5 mb-3 text-muted">&copy; 2017-2018</p>
     </form>
