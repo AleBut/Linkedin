@@ -108,11 +108,16 @@
         <br>
       <label for="inputText" class="sr-only">NomEcole</label>
       <input type="text" class="form-control" placeholder="Nom de l'Ecole" value="<?php echo $NomEcole?>" required autofocus name="NomEcole">
-        <br>
+    <br><div style="display: inline;">
+          <p style="float: left;"> Date de début</p>
       <input type="date" name="DateArrive" placeholder="Date d'arrivee" value="<?php echo $DateArrive?>" style="text-align : right;">
-        <br><br>
+        <br>
+        </div>
+        <br><div style="display: inline;">
+          <p style="float: left;"> Date de début</p>
       <input type="date" name= "DateFin" placeholder="Date de fin" value="<?php echo $DateFin?>" style="text-align : right;">
         <br><br>
+        </div>
       <label for="inputText" class="sr-only">Commentaires</label>
       <input type="text" class="form-control" placeholder="Commentaires" value="<?php echo $Commentaires?>" required autofocus name="Commentaires">
         <br>
