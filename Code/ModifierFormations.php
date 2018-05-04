@@ -51,7 +51,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Formations</title>
+    <title>LinkedInECE</title>
 
     <!-- Bootstrap core CSS -->
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" rel="stylesheet">
@@ -60,6 +60,7 @@
     <link href="signin.css" rel="stylesheet">
   </head>
 
+  <body class="text-center" id="bckg">
   <body class="text-center">
     <nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top">
 
@@ -125,6 +126,8 @@
     <a class="btn btn-info btn-lg btn-block egn " href="AfficherModifierProfil.php">Retour</a>
     <p class="mt-5 mb-3 text-muted">&copy; 2017-2018</p>     
       <button class="btn btn-lg btn-block btngr egn " type="submit">Valider</button>
+
+      <p class="mt-5 mb-3 text-muted">&copy; 2017-2018</p>
     </form>
       
   </body>

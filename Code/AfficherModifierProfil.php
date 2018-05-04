@@ -91,6 +91,7 @@
   </head>
 
   <body class="text-center">
+
   	<nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top">
 
       <!-- Bouton à gauche -->
@@ -137,6 +138,7 @@
         </ul>
       </div>
     </nav>
+
     <form class="form-signin" action="ModifierProfil.php" method="post">
       <img class="mb-4" src="https://getbootstrap.com/assets/brand/bootstrap-solid.svg" alt="" width="72" height="72">
       <h1 class="h3 mb-3 font-weight-normal">Modifier vos informations</h1>
@@ -166,6 +168,7 @@
       <a class="btn btn-info btn-lg btn-block egn " href="Profil.php">Retour</a>
 
 
+      <p class="mt-5 mb-3 text-muted">&copy; 2017-2018</p>
     </form>
       
   </body>

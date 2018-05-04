@@ -53,7 +53,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Experiences</title>
+    <title>LinkedInECE</title>
 
     <!-- Bootstrap core CSS -->
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" rel="stylesheet">
@@ -63,6 +63,7 @@
   </head>
 
   <body class="text-center">
+
     <nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top">
 
       <!-- Bouton à gauche -->
@@ -124,6 +125,10 @@
         </div>
         <?php } ?>
     <a href="AjouterExperience.html" class="btn btn-primary">Ajouter une Experience</a><br><br>
+
+    <a class="btn btn-lg btn-block btngr egn " href="AfficherModifierProfil.php">Retour</a>
+    <p class="mt-5 mb-3 text-muted">&copy; 2017-2018</p>
+
     <a class="btn btn-info btn-lg btn-block egn " href="AfficherModifierProfil.php">Retour</a>
     <p class="mt-5 mb-3 text-muted">&copy; 2017-2018</p>
 
