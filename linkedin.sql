@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1:3306
--- Généré le :  ven. 04 mai 2018 à 13:45
+-- Généré le :  ven. 04 mai 2018 à 15:33
 -- Version du serveur :  5.7.19
 -- Version de PHP :  5.6.31
 
@@ -84,17 +84,17 @@ CREATE TABLE IF NOT EXISTS `connexion` (
   PRIMARY KEY (`ID_connexion`),
   KEY `ID_user_1` (`ID_user_1`),
   KEY `ID_user_2` (`ID_user_2`)
-) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=latin1;
 
 --
 -- Déchargement des données de la table `connexion`
 --
 
 INSERT INTO `connexion` (`ID_connexion`, `ID_user_1`, `ID_user_2`, `DateConnexion`) VALUES
-(2, 2, 3, '2018-04-29 22:00:00'),
 (5, 2, 1, '2018-05-03 15:07:36'),
 (9, 2, 7, '2018-05-04 13:27:23'),
-(10, 7, 8, '2018-05-04 13:33:26');
+(10, 7, 8, '2018-05-04 13:33:26'),
+(11, 3, 2, '2018-05-04 15:33:21');
 
 -- --------------------------------------------------------
 
@@ -111,7 +111,7 @@ CREATE TABLE IF NOT EXISTS `demandeconnexion` (
   PRIMARY KEY (`ID_demandeConnexion`),
   KEY `ID_destinataire` (`ID_destinataire`),
   KEY `ID_expediteur` (`ID_expediteur`)
-) ENGINE=InnoDB AUTO_INCREMENT=18 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=19 DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -137,9 +137,9 @@ CREATE TABLE IF NOT EXISTS `description` (
 --
 
 INSERT INTO `description` (`ID_description`, `ID_user`, `Description`, `CV`, `PhotoProfil`, `ImageFond`, `ModeVisibilite`) VALUES
-(1, 1, 'Wallah je le jure', 'My passions are shopping, wine and being gorgeous', 'imageProfilAlexis.jpg', 'imageBackgroundAlexis.jpg', 0),
-(2, 2, 'Bo bojamin', 'CV', 'imageProfilBenjamin.jpg', 'imageBackgroundDefault', 0),
-(3, 3, 'Pierre', 'P', 'imageProfilPierre.jpg', 'imageBackgroundDefault', 0),
+(1, 1, 'Jeune etudiant', 'cv.pdf', 'imageProfilAlexis.jpg', 'imageBackgroundAlexis.jpg', 0),
+(2, 2, 'Jeune etudiant', 'CV', 'imageProfilBenjamin.jpg', 'imageBackgroundDefault', 0),
+(3, 3, 'Jeune Ã©tudiant', 'Accueil.css', 'imageProfilPierre.jpg', 'imageBackgroundDefault.jpg', 0),
 (8, 7, '', '', 'imageProfilDefault.jpg', 'imageBackgroundDefault.jpg', 0),
 (9, 8, '', '', 'imageProfilDefault.jpg', 'imageBackgroundDefault.jpg', 0);
 
@@ -192,7 +192,7 @@ CREATE TABLE IF NOT EXISTS `experience` (
 --
 
 INSERT INTO `experience` (`ID_experience`, `ID_user`, `TypeExperience`, `Entreprise`, `DateArrive`, `DateFin`, `Localisation`, `Commentaires`) VALUES
-(1, 1, 'Branlette', 'L epicerie d Ahmed', '2018-04-11', '2018-04-12', 'La teci', 'Wallah');
+(1, 1, 'Stage', 'Citee des sciences', '2018-04-11', '2018-04-12', 'Paris', 'Robotique');
 
 -- --------------------------------------------------------
 
@@ -218,7 +218,7 @@ CREATE TABLE IF NOT EXISTS `formation` (
 --
 
 INSERT INTO `formation` (`ID_formation`, `ID_user`, `NomEcole`, `TypeFormation`, `DateArrive`, `DateFin`, `Commentaire`) VALUES
-(1, 1, 'ECE Paris', 'Formation école ingénieur', '2015-04-30', '2020-04-30', 'Ecole post bac formation généraliste');
+(1, 1, 'ECE Paris', 'Formation ecole ingenieur', '2015-04-30', '2020-04-30', 'Ecole post bac formation generaliste');
 
 -- --------------------------------------------------------
 
@@ -342,7 +342,7 @@ INSERT INTO `post` (`ID_post`, `ID_user`, `Contenu`, `DatePublication`, `Lieu`, 
 (20, 7, '<div style=\"width : 400px;\"><p style=\"text-align : center;\">Bonjour, je suis Richard Pastel!</p></div>', '2018-05-04 15:34:37', 'Paris', 0),
 (21, 8, '<div style=\"width : 400px;\"><p style=\"text-align : center;\">Et moi Jacques Boulon!</p></div>', '2018-05-04 15:34:54', 'Paris', 0),
 (22, 2, '<div style=\"width : 400px;\"><p style=\"text-align : center;\">Nouvelle photo de profil:</p><img src=imageProfilBenjamin.jpg alt=\"\" height=\"200\" width\"220\" style=\"margin-left : 50px;\"/></div>', '2018-05-04 15:35:28', 'Paris', 0),
-(23, 3, '<div style=\"width : 400px;\"><p style=\"text-align : center;\">Cher reseau, je recherche un stage pour cet Ã©tÃ© dans le domaine de l ingenierie</p></div>', '2018-05-04 15:36:10', 'Paris', 0),
+(23, 3, '<div style=\"width : 400px;\"><p style=\"text-align : center;\">Cher rÃ©seau, je recherche un stage pour cet Ã©tÃ© dans le domaine de l ingenierie</p></div>', '2018-05-04 15:36:10', 'Paris', 0),
 (24, 1, '<div style=\"width : 400px;\"><p style=\"text-align : center;\">Recherche assistant dans la finance, voir la section Emploi</p></div>', '2018-05-04 15:42:38', 'Paris', 0);
 
 -- --------------------------------------------------------
@@ -379,83 +379,11 @@ INSERT INTO `utilisateur` (`ID_user`, `Prenom`, `Nom`, `DateNaissance`, `Mail`, 
 --
 
 --
--- Contraintes pour la table `aimer`
---
-ALTER TABLE `aimer`
-  ADD CONSTRAINT `aimer_ibfk_1` FOREIGN KEY (`ID_post`) REFERENCES `post` (`ID_post`),
-  ADD CONSTRAINT `aimer_ibfk_2` FOREIGN KEY (`ID_user`) REFERENCES `utilisateur` (`ID_user`);
-
---
--- Contraintes pour la table `commentaire`
---
-ALTER TABLE `commentaire`
-  ADD CONSTRAINT `commentaire_ibfk_1` FOREIGN KEY (`ID_post`) REFERENCES `post` (`ID_post`),
-  ADD CONSTRAINT `commentaire_ibfk_2` FOREIGN KEY (`ID_user`) REFERENCES `utilisateur` (`ID_user`);
-
---
 -- Contraintes pour la table `connexion`
 --
 ALTER TABLE `connexion`
   ADD CONSTRAINT `connexion_ibfk_1` FOREIGN KEY (`ID_user_1`) REFERENCES `utilisateur` (`ID_user`),
   ADD CONSTRAINT `connexion_ibfk_2` FOREIGN KEY (`ID_user_2`) REFERENCES `utilisateur` (`ID_user`);
-
---
--- Contraintes pour la table `demandeconnexion`
---
-ALTER TABLE `demandeconnexion`
-  ADD CONSTRAINT `demandeconnexion_ibfk_1` FOREIGN KEY (`ID_destinataire`) REFERENCES `utilisateur` (`ID_user`),
-  ADD CONSTRAINT `demandeconnexion_ibfk_2` FOREIGN KEY (`ID_expediteur`) REFERENCES `utilisateur` (`ID_user`);
-
---
--- Contraintes pour la table `description`
---
-ALTER TABLE `description`
-  ADD CONSTRAINT `description_ibfk_1` FOREIGN KEY (`ID_user`) REFERENCES `utilisateur` (`ID_user`);
-
---
--- Contraintes pour la table `evenement`
---
-ALTER TABLE `evenement`
-  ADD CONSTRAINT `evenement_ibfk_1` FOREIGN KEY (`ID_post`) REFERENCES `post` (`ID_post`);
-
---
--- Contraintes pour la table `experience`
---
-ALTER TABLE `experience`
-  ADD CONSTRAINT `experience_ibfk_1` FOREIGN KEY (`ID_user`) REFERENCES `utilisateur` (`ID_user`);
-
---
--- Contraintes pour la table `formation`
---
-ALTER TABLE `formation`
-  ADD CONSTRAINT `formation_ibfk_1` FOREIGN KEY (`ID_user`) REFERENCES `utilisateur` (`ID_user`);
-
---
--- Contraintes pour la table `media`
---
-ALTER TABLE `media`
-  ADD CONSTRAINT `media_ibfk_1` FOREIGN KEY (`ID_post`) REFERENCES `post` (`ID_post`);
-
---
--- Contraintes pour la table `message`
---
-ALTER TABLE `message`
-  ADD CONSTRAINT `message_ibfk_1` FOREIGN KEY (`ID_expediteur`) REFERENCES `utilisateur` (`ID_user`),
-  ADD CONSTRAINT `message_ibfk_2` FOREIGN KEY (`ID_destinataire`) REFERENCES `utilisateur` (`ID_user`);
-
---
--- Contraintes pour la table `offre`
---
-ALTER TABLE `offre`
-  ADD CONSTRAINT `offre_ibfk_1` FOREIGN KEY (`ID_user_recruteur`) REFERENCES `utilisateur` (`ID_user`),
-  ADD CONSTRAINT `offre_ibfk_2` FOREIGN KEY (`ID_user_salarie`) REFERENCES `utilisateur` (`ID_user`);
-
---
--- Contraintes pour la table `partage`
---
-ALTER TABLE `partage`
-  ADD CONSTRAINT `partage_ibfk_1` FOREIGN KEY (`ID_post`) REFERENCES `post` (`ID_post`),
-  ADD CONSTRAINT `partage_ibfk_2` FOREIGN KEY (`ID_user`) REFERENCES `utilisateur` (`ID_user`);
 
 --
 -- Contraintes pour la table `post`
