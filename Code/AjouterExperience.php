@@ -20,7 +20,6 @@
 	$db_found = mysqli_select_db($db_handle, $database);
 
     $sql = "INSERT INTO experience (ID_user, TypeExperience, Entreprise, DateArrive, DateFin, Localisation, Commentaires) VALUES (".$ID_user.", '". $TypeExperience ."', '". $Entreprise ."', '". $DateArrive ."', '". $DateFin ."', '". $Localisation."', '".$Commentaires."')";
-    echo $sql;
     if(mysqli_query($db_handle, $sql)){
         header("Refresh: 0; url=ModifierExperiences.php");
     }

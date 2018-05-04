@@ -14,21 +14,18 @@
 	// Si BDD existe
 	if($db_found)
 	{ 
-        // On écrit la requête SQL
+    // On écrit la requête SQL
 		$sql = "SELECT * FROM description WHERE ID_user = " .$ID_user;
-		// On envoit la requête
-        $result = mysqli_query($db_handle, $sql);
-        $data=mysqli_fetch_assoc($result);
-        if(empty($data)){
-           echo"error";
-            }
-        
-        else{
-            $Description = $data['Description'];
-            $CV = $data['CV'];
-            $PhotoProfil = $data['PhotoProfil'];
-            $ImageFond = $data['ImageFond'];
-            }
+    // On envoit la requête
+    $result = mysqli_query($db_handle, $sql);
+    $data=mysqli_fetch_assoc($result);
+    if(!empty($data))
+    {
+      $Description = $data['Description'];
+      $CV = $data['CV'];
+      $PhotoProfil = $data['PhotoProfil'];
+      $ImageFond = $data['ImageFond'];
+    }
 	}
 ?>
            

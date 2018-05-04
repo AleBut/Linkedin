@@ -12,6 +12,7 @@
   $Description = "Pas encore de description!";
   $PhotoProfil = "imageProfilDefault.jpg";
   $PhotoArrierePlan = "imageBackgroundDefault.jpg";
+  $CV = "";
 
     // Table experience
   $Emploi = "";
@@ -49,6 +50,7 @@
       $Description = $data['Description'];
       $PhotoProfil = $data['PhotoProfil'];
       $PhotoArrierePlan = $data['ImageFond'];
+      $CV = $data['CV'];
     }
 
 
@@ -159,7 +161,7 @@
         <div class = "informations">
           <h3>Informations:</h3>
           <p>Email: <?php echo $Mail?></p>
-          <p>CV:</p>
+          <p>CV: <?php echo $CV?></p>
         </div>
       </section>
 

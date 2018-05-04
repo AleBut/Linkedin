@@ -8,7 +8,6 @@
     $prenom     = isset($_POST["prenom"])? $_POST["prenom"]: "";
 	$password 	= isset($_POST["MDP"])? $_POST["MDP"]: "";
     $date       = isset($_POST["date"])? $_POST["date"]: "";
-	$connexion = false;
 
 	// Identifier BDD
 	$database = "linkedin";
@@ -45,18 +44,18 @@
             // On envoit la requête
             $result = mysqli_query($db_handle, $sql);
             $data = mysqli_fetch_assoc($result);
+
+            // Insertion table description
+            $sql = "INSERT INTO description (ID_user, Description, CV, PhotoProfil, ImageFond, ModeVisibilite) VALUES ('" . $data['ID_user'] . "', '', '', 'imageProfilDefault.jpg', 'imageBackgroundDefault.jpg','0')";
+      		mysqli_query($db_handle, $sql);
             
             //On ouvre la session du nouvel utilisateur grâce a son ID
             $_SESSION['ID_user'] = $data['ID_user'];
-            header("Refresh: 0; url=Accueil.php");
-            $connexion = true;
             mysqli_close($db_handle);
+            header("Refresh: 0; url=Accueil.php");
 		}
         //L'adresse est déjà utilisée 
 		else
-		{
             header("Refresh: 0; url=CreerCompteErrone.html");
-
-		}
 	}
 ?>

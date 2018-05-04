@@ -5,7 +5,7 @@
 
 
   // Récupérer l'ID de l'emploi
-  $ID_emploi = isset($_POST["emploi"])? $_POST["emploi"]: "";
+  $ID_emploi = isset($_GET["emploi"])? $_GET["emploi"]: "";
     
 
   // Identifier BDD

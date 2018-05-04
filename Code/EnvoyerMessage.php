@@ -5,8 +5,8 @@
 
   // Récupérer les prénoms du correspondant
   $Prenom_destinataire = "";
-  $Prenom_utilisateur = "";
-  $Photo_utilisateur = "";
+  $Prenom_utilisateur = "imageProfilDefault.jpg";
+  $Photo_utilisateur = "imageProfilDefault.jpg";
   $Photo_destinataire = "";
 
   // Récupérer l'ID du destinataire du message
@@ -65,8 +65,9 @@
     $result = mysqli_query($db_handle, $sql);
     $data = mysqli_fetch_assoc($result);
 
-    // On récupère le prenom de l'utilisateur
-    $Photo_utilisateur = $data['PhotoProfil'];
+    // On récupère la photo de l'utilisateur
+    if(!empty($data['PhotoProfil']))
+      $Photo_utilisateur = $data['PhotoProfil'];
 
     // Requete table utilisateur
     $sql = "SELECT PhotoProfil FROM description WHERE ID_user = " .  $ID_destinataire;
@@ -74,12 +75,9 @@
     $data = mysqli_fetch_assoc($result);
 
     // On récupère Prenom et Nom pour le profil
-    $Photo_destinataire = $data['PhotoProfil'];
+    if(!empty($data['PhotoProfil']))
+      $Photo_destinataire = $data['PhotoProfil'];
       
-      
-      
-
-
     // Requete historique des messages entre l'utilisateur et le destinateur
     $sql = "SELECT * FROM message WHERE ( ID_expediteur = " . $ID_user . " AND ID_destinataire = " . $ID_destinataire . " ) OR ( ID_expediteur = " . $ID_destinataire . " AND ID_destinataire = " . $ID_user . " ) ORDER BY Date";
     $result = mysqli_query($db_handle, $sql);
@@ -165,7 +163,7 @@
           </li>
           <!-- Bouton emplois -->
           <li class="nav-item -brand bouton">
-            <a class="nav-link" href="#">Emplois</a>
+            <a class="nav-link" href="Emplois.php">Emplois</a>
           </li>
           <!-- Bouton messagerie ACTIVE -->
           <li class="nav-item active -brand bouton">
@@ -173,7 +171,7 @@
           </li>
           <!-- Bouton notifications -->
           <li class="nav-item -brand bouton">
-            <a class="nav-link" href="#">Notifications</a>
+            <a class="nav-link" href="Notifications.php">Notifications</a>
           </li>
           <!-- Bouton profil -->
           <li class="nav-item -brand bouton">

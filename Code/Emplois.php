@@ -42,7 +42,9 @@
             <p style="margin-left: 60%; float: left; text-align: right"> Lieu : '.$arrayLocalisation[$i].' </p>
             <br><br>
         <p> Description de l\'offre : '.$arrayDescription[$i].'</p>
+          <a href = "AccepterEmploi.php?emploi=' . $arrayIDJob[$i] . '">
             <button class="boutona btn btngr  " style="margin-left: 40%;">Accepter l\'offre</button><br><br>
+          </a>
         </div><br><br>';
 	    }
 	}

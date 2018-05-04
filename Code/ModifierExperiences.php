@@ -126,9 +126,6 @@
         <?php } ?>
     <a href="AjouterExperience.html" class="btn btn-primary">Ajouter une Experience</a><br><br>
 
-    <a class="btn btn-lg btn-block btngr egn " href="AfficherModifierProfil.php">Retour</a>
-    <p class="mt-5 mb-3 text-muted">&copy; 2017-2018</p>
-
     <a class="btn btn-info btn-lg btn-block egn " href="AfficherModifierProfil.php">Retour</a>
     <p class="mt-5 mb-3 text-muted">&copy; 2017-2018</p>
 
